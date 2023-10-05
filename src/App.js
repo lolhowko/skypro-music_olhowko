@@ -1,13 +1,18 @@
 import "./App.css";
+import audioPlayer from './components/audioPlayer';
+import navMenu from './components/navMenu';
+
 
 function App() {
     return (
       <div className="App">
-  
-  
         <div class="wrapper">
           <div class="container">
             <main class="main">
+
+            {/* <audioPlayer /> */}
+
+
               <nav class="main__nav nav">
                 <div class="nav__logo logo">
                   <img class="logo__image" src="img/logo.png" alt="logo" />
@@ -348,6 +353,7 @@ function App() {
                 </div>
               </div>
             </main>
+            
             <div class="bar">
               <div class="bar__content">
                 <div class="bar__player-progress"></div>
