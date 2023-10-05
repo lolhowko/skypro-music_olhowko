@@ -27,6 +27,6 @@ export function Track() {
                   <span className="track__time-text">2:22</span>
                 </div>
               </div>
-            </div>
+        </div>
     )
 }
