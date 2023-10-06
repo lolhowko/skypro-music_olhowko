@@ -1,3 +1,6 @@
+import './track.css'
+
+
 export function Track() {
     return (
         <div className="playlist__item">
@@ -30,3 +33,5 @@ export function Track() {
         </div>
     )
 }
+
+export default Track

@@ -1,3 +1,5 @@
+import './playlist.css'
+
 export function PlaylistItem() {
     return(
         <div className="sidebar__item">
@@ -10,3 +12,5 @@ export function PlaylistItem() {
       </div>
     )
 }
+
+export default PlaylistItem

@@ -1,3 +1,6 @@
+import './searchBlock.css'
+
+
 export function SearchBlock() {
     return(
         <div className="centerblock__search search">
@@ -12,3 +15,5 @@ export function SearchBlock() {
       </div>
     )
 }
+
+export default SearchBlock

@@ -1,3 +1,5 @@
+import './audioPlayer.css'
+
 export function AudioPlayer() {
     return (
         <div className="bar">
@@ -85,3 +87,5 @@ export function AudioPlayer() {
       </div>
     )
 }
+
+export default AudioPlayer

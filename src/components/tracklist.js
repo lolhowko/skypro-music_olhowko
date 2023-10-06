@@ -1,5 +1,7 @@
 import { SearchBlock } from "./searchBlock";
 import { Track } from "./track";
+import './tracklist.css'
+
 
 export function TrackList() {
     return (
@@ -40,3 +42,5 @@ export function TrackList() {
       </div>
     )
 }
+
+export default TrackList

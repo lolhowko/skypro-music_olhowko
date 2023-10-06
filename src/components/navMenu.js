@@ -1,3 +1,5 @@
+import './navMenu.css'
+
 export function NavMenu() {
     return (
         <nav className="main__nav nav">
@@ -25,3 +27,5 @@ export function NavMenu() {
       </nav>
     )
 }
+
+export default NavMenu

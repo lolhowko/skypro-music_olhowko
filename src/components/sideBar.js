@@ -1,4 +1,6 @@
 import { PlaylistItem } from "./playlist";
+import './sideBar.css'
+
 
 export function SideBar() {
     return(
@@ -21,3 +23,5 @@ export function SideBar() {
       </div>
     )
 }
+
+export default SideBar
