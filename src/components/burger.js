@@ -10,11 +10,11 @@ export const Burger = () => {
   
     return (
       <div>
-        <button className="nav__burger burger" onClick={toggleVisibility}>
+        <div className="nav__burger burger" onClick={toggleVisibility}>
             <span className="burger__line"></span>
             <span className="burger__line"></span>
             <span className="burger__line"></span>
-        </button>
+        </div>
   
         {!visible && (
             <div className="nav__menu menu">
