@@ -1,4 +1,4 @@
-import { Burger } from './burger'
+import { Burger } from '../burger/burger'
 import './navMenu.css'
 
 export function NavMenu() {

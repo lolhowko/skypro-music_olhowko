@@ -1,5 +1,5 @@
-import { SearchBlock } from "./searchBlock";
-import { Track } from "./track";
+import { SearchBlock } from "../searchBlock/searchBlock";
+import { Track } from "../track/track";
 import './tracklist.css'
 
 

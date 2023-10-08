@@ -1,8 +1,8 @@
 import "./App.css";
-import { AudioPlayer } from "./components/audioPlayer";
-import  { NavMenu } from './components/navMenu';
-import { SideBar } from "./components/sideBar";
-import { TrackList } from "./components/tracklist";
+import { AudioPlayer } from "./components/audioPlayer/audioPlayer";
+import  { NavMenu } from './components/navMenu/navMenu';
+import { SideBar } from "./components/sideBar/sideBar";
+import { TrackList } from "./components/tracklist/tracklist";
 
 
 function App() {
