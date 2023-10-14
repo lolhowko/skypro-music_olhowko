@@ -26,7 +26,7 @@ export function Track() {
                   <Skeleton count={1} width={51} height={51}/>
                     ) : (          
                       <svg className="track__title-svg" alt="music">
-                        <use xlinkHref="/musical_service/src/fonts and style/img/icon/sprite.svg#icon-note" />
+                        <use xlinkHref="img/icon/sprite.svg#icon-note" />
                       </svg>
                 )}
                   </div>
