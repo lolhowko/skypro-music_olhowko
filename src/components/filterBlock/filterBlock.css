@@ -66,3 +66,15 @@
     color: #B672FF;
     text-decoration: underline;
   }
+
+  ._btn-text_active {
+    border-color: #AD61FF;
+    color: #AD61FF;
+    cursor: pointer;
+  }
+  
+  ._btn-icon_active svg {
+    fill: transparent;
+    stroke: #FFFFFF;
+    cursor: pointer;
+  }

@@ -1,3 +1,5 @@
+import './filterBlock.css'
+
 export function FilterOptions() {
     return (
         <div>

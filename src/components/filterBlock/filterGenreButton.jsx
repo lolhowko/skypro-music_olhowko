@@ -1,3 +1,5 @@
+import './filterBlock.css'
+
 export function FilterGenreButton({ onClick, isActive }) {
     const handleButtonClick = () => {
       onClick(); 
