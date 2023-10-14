@@ -1,6 +1,20 @@
+import { useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css';
 import './audioPlayer.css'
 
 export function AudioPlayer() {
+  const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }, []);
+
+
     return (
         <div className="bar">
         <div className="bar__content">
@@ -38,16 +52,31 @@ export function AudioPlayer() {
               <div className="player__track-play track-play">
                 <div className="track-play__contain">
                   <div className="track-play__image">
+                  {isLoading ? (
+                  <Skeleton count={1} width={51} height={51} />
+                  ) : (
                     <svg className="track-play__svg" alt="music">
                       <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                     </svg>
+                  )}
+
                   </div>
                   <div className="track-play__author">
-                    <a className="track-play__author-link" href="http://"
-                    >Ты та...</a>
+
+                    {isLoading ? (
+                        <Skeleton count={1} />
+                        ) : (<a className="track-play__author-link" href="http://">Ты та...</a>
+                        )}
+
                   </div>
                   <div className="track-play__album">
-                    <a className="track-play__album-link" href="http://">Баста</a>
+
+                    {isLoading ? (
+                          <Skeleton count={1} />
+                          ) : (
+                            <a className="track-play__album-link" href="http://">Баста</a>
+                          )}
+                    
                   </div>
                 </div>
 
