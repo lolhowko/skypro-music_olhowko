@@ -1,4 +1,4 @@
-import { PlaylistItem } from "../playlist/playlist";
+import { PlaylistItem } from "../playlistItem/playlistItem";
 import './sideBar.css'
 
 
