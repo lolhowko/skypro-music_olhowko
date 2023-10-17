@@ -1,16 +1,16 @@
-import { Burger } from '../burger/burger'
-import './navMenu.css'
+import { Burger } from '../burger/burger' 
+import * as S from './navMenu.styles'
 
 export function NavMenu() {
     return (
-        <nav className="main__nav nav">
-          <div className="nav__logo logo">
-            <img className="logo__image" src="img/logo.png" alt="logo" />
-          </div>
+        <S.MainNav className="main__nav nav">
+          <S.NavLogo className="nav__logo logo">
+            <S.LogoImage className="logo__image" src="img/logo.png" alt="logo" />
+          </S.NavLogo>
 
           <Burger />
 
-      </nav>
+      </S.MainNav>
     )
 }
 
