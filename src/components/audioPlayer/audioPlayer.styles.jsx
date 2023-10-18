@@ -62,22 +62,25 @@ display: flex;
 flex-direction: row;
 padding: 0 27px 0 31px;`
 
-export const PlayerBtnPrev = styled.div`
+
+export const PlayerBtn = styled.div`
 padding: 5px;
 display: -webkit-box;
 display: -ms-flexbox;
 display: flex;
 -webkit-box-align: center;
 -ms-flex-align: center;
-align-items: center;
-margin-right: 23px;`
+align-items: center;`
 
+
+export const PlayerBtnPrev = styled(PlayerBtn)`
+margin-right: 23px;`
 
 export const PlayerBtnPrevSvg = styled.svg`
   width: 15px;
   height: 14px;`
 
-export const PlayerBtnPlay = styled.div`
+export const PlayerBtnPlay = styled(PlayerBtn)`
 padding: 5px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -93,14 +96,7 @@ export const PlayerBtnPlaySvg = styled.svg`
   fill: #d9d9d9;`
 
 
-export const PlayerBtnNext = styled.div`
-padding: 5px;
-display: -webkit-box;
-display: -ms-flexbox;
-display: flex;
--webkit-box-align: center;
--ms-flex-align: center;
-align-items: center;
+export const PlayerBtnNext = styled(PlayerBtn)`
 margin-right: 28px;
 fill: #a53939;`
 
@@ -111,16 +107,8 @@ height: 14px;
 fill: inherit;
 stroke: #d9d9d9;`
 
-export const PlayerBtnRepeat = styled.div`
-padding: 5px;
-display: -webkit-box;
-display: -ms-flexbox;
-display: flex;
--webkit-box-align: center;
--ms-flex-align: center;
-align-items: center;
+export const PlayerBtnRepeat = styled(PlayerBtn)`
 margin-right: 24px;`
-
 
 export const PlayerBtnRepeatSvg = styled.svg`
 width: 18px;
@@ -128,14 +116,7 @@ height: 12px;
 fill: transparent;
 stroke: #696969;`
 
-export const PlayerBtnShuffle = styled.div`
-padding: 5px;
-display: -webkit-box;
-display: -ms-flexbox;
-display: flex;
--webkit-box-align: center;
--ms-flex-align: center;
-align-items: center;
+export const PlayerBtnShuffle = styled(PlayerBtn)`
 display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
