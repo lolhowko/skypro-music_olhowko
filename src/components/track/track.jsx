@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import './track.css'
+// import './track.css'
+import * as S from './track.styles'
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
@@ -18,56 +19,56 @@ export function Track() {
 
 
     return (
-        <div className="playlist__item">
-              <div className="playlist__track track">
-                <div className="track__title">
-                  <div className="track__title-image">
+        <S.PlaylistItem>
+              <S.PlaylistTrack className="track">
+                <S.TrackTittle>
+                  <S.TrackTittleImage>
                   {isLoading ? (
                   <Skeleton count={1} width={51} height={51}/>
                     ) : (          
-                      <svg className="track__title-svg" alt="music">
+                      <S.TrackTittleSvg alt="music">
                         <use xlinkHref="img/icon/sprite.svg#icon-note" />
-                      </svg>
+                      </S.TrackTittleSvg>
                 )}
-                  </div>
+                  </S.TrackTittleImage>
                   <div className="track__title-text">
 
                   {isLoading ? (
                 <Skeleton count={1} width={350}/>
                   ) : (    
-                    <a className="track__title-link" href="http://">
-                      Guilt <span className="track__title-span" />
-                    </a>
+                    <S.TrackTittleLink href="http://">
+                      Guilt <S.TrackTittleSpan/>
+                    </S.TrackTittleLink>
                   )}
                   </div>
-                </div>
-                <div className="track__author">
+                </S.TrackTittle>
+                <S.TrackAuthor>
                 {isLoading ? (
                 <Skeleton count={1} width={300}/>
                   ) : (    
-                    <a className="track__author-link" href="http://">
+                    <S.TrackAuthorLink href="http://">
                       Nero
-                    </a>      
+                    </S.TrackAuthorLink>      
               )}
-                </div>
-                <div className="track__album">
+                </S.TrackAuthor>
+                <S.TrackAlbum>
                 {isLoading ? (
                   <Skeleton count={1} width={245}/>
                     ) : (    
-                      <a className="track__album-link" href="http://">
+                      <S.TrackAlbumLink href="http://">
                       Welcome Reality
-                      </a>     
+                      </S.TrackAlbumLink>     
                 )}
-                </div>
+                </S.TrackAlbum>
 
                 {isLoading ? (
                     <Skeleton count={1}/>
                       ) : (    
                         <div className="track__time">   
-                        <svg className="track__time-svg" alt="time">
+                        <S.TrackTimeSvg alt="time">
                           <use xlinkHref="/musical_service/src/fonts and style/img/icon/sprite.svg#icon-like" />
-                        </svg>
-                        <span className="track__time-text">4:44</span>
+                        </S.TrackTimeSvg>
+                        <S.TrackTimeText>4:44</S.TrackTimeText>
                       </div>   
                   )}
 
@@ -78,8 +79,8 @@ export function Track() {
                   </svg>
                   <span className="track__time-text">2:22</span>
                 </div> */}
-              </div>
-        </div>
+              </S.PlaylistTrack>
+        </S.PlaylistItem>
     )
 }
 
