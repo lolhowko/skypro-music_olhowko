@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css';
-import './audioPlayer.css'
 import * as S from './audioPlayer.styles'
 
 
@@ -52,7 +51,7 @@ export function AudioPlayer() {
                 </S.PlayerBtnShuffle>
               </S.BarControls>
 
-              <S.PlayerTrackPlay className="track-play">
+              <S.PlayerTrackPlay>
                 <S.PlayerContain>
                   <S.TrackPlayImage>
                   {isLoading ? (
@@ -64,7 +63,7 @@ export function AudioPlayer() {
                   )}
 
                   </S.TrackPlayImage>
-                  <S.TrackPlayAuthor className="track-play__author">
+                  <S.TrackPlayAuthor>
 
                     {isLoading ? (
                         <Skeleton count={1} />

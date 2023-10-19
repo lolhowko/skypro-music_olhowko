@@ -1,13 +1,13 @@
-import './filterBlock.css'
+import * as S from './filterBlock.styles'
 
 export function FilterOptions() {
     return (
         <div>
-            <ul className="filter__options ">
-                <li><a className="dropdown-item" href="http://">Option 1</a></li>
-                <li><a className="dropdown-item" href="http://">Option 2</a></li>
-                <li><a className="dropdown-item" href="http://">Option 3</a></li>
-            </ul>
+            <S.FilterOptions>
+                <li><S.DropdownItems href="http://">Option 1</S.DropdownItems></li>
+                <li><S.DropdownItems href="http://">Option 2</S.DropdownItems></li>
+                <li><S.DropdownItems href="http://">Option 3</S.DropdownItems></li>
+            </S.FilterOptions>
         </div>
     );
   };

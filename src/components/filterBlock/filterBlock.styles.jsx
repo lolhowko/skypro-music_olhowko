@@ -36,12 +36,35 @@ flex-direction: column;
 align-items: flex-start;
 gap: 10px;`
 
-export const DropdownItems = styled.li`
+export const DropdownItems = styled.a`
 color: #FFF;
 font-variant-numeric: lining-nums proportional-nums;
 font-family: StratosSkyeng;
 font-size: 20px;
 font-style: normal;
 font-weight: 400;
-line-height: 24px;`
+line-height: 24px;
 
+:hover{
+  color: #B672FF;
+  text-decoration: underline;
+}`
+
+export const FilterButton = styled.div`
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+border: 1px solid #ffffff;
+border-radius: 60px;
+padding: 6px 20px;`
+
+export const ButtonTextActive = styled.div`
+border-color: #AD61FF;
+color: #AD61FF;
+cursor: pointer;`
+
+export const ButtonIconActive = styled.div`
+fill: transparent;
+stroke: #FFFFFF;
+cursor: pointer;`
