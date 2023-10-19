@@ -4,7 +4,7 @@ import * as S from './sideBar.styles'
 
 export function SideBar() {
     return(
-        <S.MainSidebar className="sidebar">
+        <S.MainSidebar>
         <S.SidebarPersonal>
           <S.SidebarPersonalName>Sergey.Ivanov</S.SidebarPersonalName>
           <S.SidebarIcon>

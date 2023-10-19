@@ -18,7 +18,7 @@ export function PlaylistItem() {
 
 
     return(
-      <div className="sidebar__list">
+      <>
 
         <S.SidebarItem>
 
@@ -51,7 +51,22 @@ export function PlaylistItem() {
               )}
       </S.SidebarItem>
       
-      </div>
+      <S.SidebarItem>
+
+        {isLoading ? (
+          <Skeleton count={1} width={250} height={150} />
+          ) : (
+            <>
+          <S.SidebarLink href="#">
+            <S.SidebarImg
+  
+              src="img/playlist03.png"
+              alt="day's playlist" />
+          </S.SidebarLink>
+                </>
+              )}
+      </S.SidebarItem>
+      </>
       
     )
 }
