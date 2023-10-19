@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './filterBlock.css'
 import * as S from './filterBlock.styles'
 import FilterAuthorButton from './filterAuthorButton';
 import FilterOptions from './filterOptions';

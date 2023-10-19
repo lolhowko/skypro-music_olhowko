@@ -51,20 +51,15 @@ line-height: 24px;
 }`
 
 export const FilterButton = styled.div`
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 24px;
-border: 1px solid #ffffff;
-border-radius: 60px;
-padding: 6px 20px;`
-
-export const ButtonTextActive = styled.div`
-border-color: #AD61FF;
-color: #AD61FF;
-cursor: pointer;`
-
-export const ButtonIconActive = styled.div`
-fill: transparent;
-stroke: #FFFFFF;
-cursor: pointer;`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid #ffffff;
+  border-radius: 60px;
+  padding: 6px 20px;
+  border-color: ${props => props.isActive ? '#AD61FF' : ' '};
+  color: ${props => props.isActive ? '#AD61FF' : ' '};
+  cursor:  ${props => props.isActive ? 'pointer' : ' '};
+  fill: ${props => props.isActive ? 'transparent' : ' '};
+  stroke:${props => props.isActive ? '#FFFFFF' : ' '};`
