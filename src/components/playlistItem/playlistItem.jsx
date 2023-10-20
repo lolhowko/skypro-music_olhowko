@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-// import './playlistItem.css'
 import * as S from './playListItem.styles'
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+
 
 export function PlaylistItem() {
 
@@ -20,28 +20,28 @@ export function PlaylistItem() {
     return(
       <>
 
-        <S.SidebarItem>
+      <S.SidebarItem>
 
           {isLoading ? (
           <Skeleton count={1} width={250} height={150} />
           ) : (
           <>
-          <S.SidebarLink href="#">
+          <S.SidebarLink href="/collections/1">
           <S.SidebarImg
           src="img/playlist01.png"
           alt="day's playlist" />
           </S.SidebarLink>
           </>
           )}
-        </S.SidebarItem>
+      </S.SidebarItem>
 
-        <S.SidebarItem>
+      <S.SidebarItem>
 
         {isLoading ? (
           <Skeleton count={1} width={250} height={150} />
           ) : (
             <>
-          <S.SidebarLink href="#">
+          <S.SidebarLink href="/collections/2">
             <S.SidebarImg
   
               src="img/playlist02.png"
@@ -57,7 +57,7 @@ export function PlaylistItem() {
           <Skeleton count={1} width={250} height={150} />
           ) : (
             <>
-          <S.SidebarLink href="#">
+          <S.SidebarLink href="/collections/3">
             <S.SidebarImg
   
               src="img/playlist03.png"
