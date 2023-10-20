@@ -1,4 +1,4 @@
-import './filterBlock.css'
+import * as S from './filterBlock.styles'
 
 export function FilterYearButton({ onClick, isActive }) {
     const handleButtonClick = () => {
@@ -6,9 +6,8 @@ export function FilterYearButton({ onClick, isActive }) {
     };
   
     return (
-        <div onClick={handleButtonClick} 
-        className = {`filter__button button-author ${isActive ? '_btn-text_active _btn-icon_active' : ''}`}>году выпуска</div>
-      );
+      <S.FilterButton isActive={isActive} onClick={handleButtonClick}>исполнителю</S.FilterButton>
+    );
     
   }
   

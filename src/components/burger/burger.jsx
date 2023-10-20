@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './burger.css' 
+import * as S from './burger.styles'
 
 
 export const Burger = () => {
@@ -10,26 +10,26 @@ export const Burger = () => {
   
     return (
       <div>
-        <div className="nav__burger burger" onClick={toggleVisibility}>
-            <span className="burger__line"></span>
-            <span className="burger__line"></span>
-            <span className="burger__line"></span>
-        </div>
+        <S.NavBurger className="burger" onClick={toggleVisibility}>
+            <S.NavBurgerLine></S.NavBurgerLine>
+            <S.NavBurgerLine></S.NavBurgerLine>
+            <S.NavBurgerLine></S.NavBurgerLine>
+        </S.NavBurger>
   
         {!visible && (
-            <div className="nav__menu menu">
-            <ul className="menu__list">
-            <li className="menu__item">
-                <a href="#" className="menu__link">Главное</a>
-            </li>
-            <li className="menu__item">
-                <a href="#" className="menu__link">Мой плейлист</a>
-            </li>
-            <li className="menu__item">
-                <a href="../signin.html" className="menu__link">Войти</a>
-            </li>
-            </ul>
-            </div>
+            <S.NavMenu className="menu">
+            <S.MenuList c>
+            <S.MenuItem>
+                <S.MenuLink href="#" className="menu__link">Главное</S.MenuLink>
+            </S.MenuItem>
+            <S.MenuItem>
+                <S.MenuLink href="#" className="menu__link">Мой плейлист</S.MenuLink>
+            </S.MenuItem>
+            <S.MenuItem>
+                <S.MenuLink href="../signin.html" className="menu__link">Войти</S.MenuLink>
+            </S.MenuItem>
+            </S.MenuList>
+            </S.NavMenu>
         )}
       </div>
     );

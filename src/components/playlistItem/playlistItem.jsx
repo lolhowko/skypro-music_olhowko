@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import './playlistItem.css'
+// import './playlistItem.css'
+import * as S from './playListItem.styles'
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
@@ -17,41 +18,55 @@ export function PlaylistItem() {
 
 
     return(
-      <div className="sidebar__list">
+      <>
 
-        <div className="sidebar__item">
+        <S.SidebarItem>
 
           {isLoading ? (
           <Skeleton count={1} width={250} height={150} />
           ) : (
           <>
-          <a className="sidebar__link" href="#">
-          <img
-          className="sidebar__img"
+          <S.SidebarLink href="#">
+          <S.SidebarImg
           src="img/playlist01.png"
           alt="day's playlist" />
-          </a>
+          </S.SidebarLink>
           </>
           )}
-        </div>
+        </S.SidebarItem>
 
-      <div className="sidebar__item">
+        <S.SidebarItem>
 
         {isLoading ? (
           <Skeleton count={1} width={250} height={150} />
           ) : (
             <>
-          <a className="sidebar__link" href="#">
-            <img
-              className="sidebar__img"
+          <S.SidebarLink href="#">
+            <S.SidebarImg
+  
               src="img/playlist02.png"
               alt="day's playlist" />
-          </a>
+          </S.SidebarLink>
                 </>
               )}
-      </div>
+      </S.SidebarItem>
       
-      </div>
+      <S.SidebarItem>
+
+        {isLoading ? (
+          <Skeleton count={1} width={250} height={150} />
+          ) : (
+            <>
+          <S.SidebarLink href="#">
+            <S.SidebarImg
+  
+              src="img/playlist03.png"
+              alt="day's playlist" />
+          </S.SidebarLink>
+                </>
+              )}
+      </S.SidebarItem>
+      </>
       
     )
 }

@@ -1,26 +1,26 @@
 import { PlaylistItem } from "../playlistItem/playlistItem";
-import './sideBar.css'
+import * as S from './sideBar.styles'
 
 
 export function SideBar() {
     return(
-        <div className="main__sidebar sidebar">
-        <div className="sidebar__personal">
-          <p className="sidebar__personal-name">Sergey.Ivanov</p>
-          <div className="sidebar__icon">
+        <S.MainSidebar>
+        <S.SidebarPersonal>
+          <S.SidebarPersonalName>Sergey.Ivanov</S.SidebarPersonalName>
+          <S.SidebarIcon>
             <svg alt="logout">
               <use xlinkHref="img/icon/sprite.svg#logout"></use>
             </svg>
-          </div>
-        </div>
-        <div className="sidebar__block">
-          <div className="sidebar__list">
+          </S.SidebarIcon>
+        </S.SidebarPersonal>
+        <S.SidebarBlock>
+          <S.SidebarList>
 
             <PlaylistItem />
 
-          </div>
-        </div>
-      </div>
+          </S.SidebarList>
+        </S.SidebarBlock>
+      </S.MainSidebar>
     )
 }
 

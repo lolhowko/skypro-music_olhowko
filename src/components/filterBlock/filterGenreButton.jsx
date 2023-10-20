@@ -1,4 +1,5 @@
-import './filterBlock.css'
+import * as S from './filterBlock.styles'
+
 
 export function FilterGenreButton({ onClick, isActive }) {
     const handleButtonClick = () => {
@@ -6,9 +7,8 @@ export function FilterGenreButton({ onClick, isActive }) {
     };
   
     return (
-        <div onClick={handleButtonClick} 
-        className = {`filter__button button-author ${isActive ? '_btn-text_active _btn-icon_active' : ''}`}>жанру</div>
-      );
+      <S.FilterButton isActive={isActive} onClick={handleButtonClick}>исполнителю</S.FilterButton>
+    );
     
   }
   

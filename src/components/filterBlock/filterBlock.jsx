@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './filterBlock.css'
+import * as S from './filterBlock.styles'
 import FilterAuthorButton from './filterAuthorButton';
 import FilterOptions from './filterOptions';
 import FilterYearButton from './filterYearButton';
@@ -14,8 +14,8 @@ export function FilterBlock () {
       };
 
     return (
-        <div className="centerblock__filter filter">
-          <div className="filter__title">Искать по:</div>
+        <S.CenterBlockFilter className="filter">
+          <S.FilterTittle>Искать по:</S.FilterTittle>
 
           <div>
             <FilterAuthorButton
@@ -27,10 +27,6 @@ export function FilterBlock () {
             {visible === "author" && <FilterOptions />}
           </div>
 
-            {/* <div className="filter__button button-author _btn-text">
-            исполнителю
-            </div> */}
-
           <div>
             <FilterYearButton
               isActive={visible === "year"}
@@ -41,10 +37,6 @@ export function FilterBlock () {
             {visible === "year" && <FilterOptions />}
           </div>
 
-            {/* <div className="filter__button button-year _btn-text">
-            году выпуска
-            </div> */}
-
           <div>
             <FilterGenreButton
               isActive={visible === "genre"}
@@ -54,9 +46,8 @@ export function FilterBlock () {
             />
             {visible === "genre" && <FilterOptions />}
           </div>
-
-            {/* <div className="filter__button button-genre _btn-text">жанру</div> */}
-      </div>
+          
+      </S.CenterBlockFilter>
     )
 }
 

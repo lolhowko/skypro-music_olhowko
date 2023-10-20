@@ -1,11 +1,12 @@
-export function FilterAuthorButton({ onClick, isActive }) {
+ import * as S from './filterBlock.styles'
+ 
+ export function FilterAuthorButton({ onClick, isActive }) {
     const handleButtonClick = () => {
       onClick(); 
     };
   
     return (
-      <div onClick={handleButtonClick} 
-      className = {`filter__button button-author ${isActive ? '_btn-text_active _btn-icon_active' : ''}`}>исполнителю</div>
+      <S.FilterButton isActive={isActive} onClick={handleButtonClick}>исполнителю</S.FilterButton>
     );
   }
   
