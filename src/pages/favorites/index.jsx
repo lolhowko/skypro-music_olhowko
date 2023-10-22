@@ -1,4 +1,4 @@
-export const MyPlaylist = () => {
+export const Favorites = () => {
     return (
         <div>
             My Playlist

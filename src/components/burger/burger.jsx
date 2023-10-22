@@ -23,7 +23,7 @@ export const Burger = () => {
                 <S.MenuLink href="#">Главное</S.MenuLink>
             </S.MenuItem>
             <S.MenuItem>
-                <S.MenuLink href="/myplaylist">Мой плейлист</S.MenuLink>
+                <S.MenuLink href="/favorites">Мой плейлист</S.MenuLink>
             </S.MenuItem>
             <S.MenuItem>
                 <S.MenuLink href="../signin.html">Войти</S.MenuLink>

@@ -26,7 +26,7 @@ export function PlaylistItem() {
           <Skeleton count={1} width={250} height={150} />
           ) : (
           <>
-          <S.SidebarLink href="/collections/1">
+          <S.SidebarLink href="/category/1">
           <S.SidebarImg
           src="img/playlist01.png"
           alt="day's playlist" />
@@ -41,7 +41,7 @@ export function PlaylistItem() {
           <Skeleton count={1} width={250} height={150} />
           ) : (
             <>
-          <S.SidebarLink href="/collections/2">
+          <S.SidebarLink href="/category/2">
             <S.SidebarImg
   
               src="img/playlist02.png"
@@ -57,7 +57,7 @@ export function PlaylistItem() {
           <Skeleton count={1} width={250} height={150} />
           ) : (
             <>
-          <S.SidebarLink href="/collections/3">
+          <S.SidebarLink href="/category/3">
             <S.SidebarImg
   
               src="img/playlist03.png"
