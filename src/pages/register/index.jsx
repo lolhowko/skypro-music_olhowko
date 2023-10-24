@@ -32,7 +32,7 @@ export const Register = () => {
                   placeholder="Повторите пароль"
                 />
                 <S.ModalBtnSignUpEnt>
-                  <S.ModalBtnSignUpEntA href="../index.html">Зарегистрироваться</S.ModalBtnSignUpEntA>
+                  <S.ModalBtnSignUpEntA href="/">Зарегистрироваться</S.ModalBtnSignUpEntA>
                 </S.ModalBtnSignUpEnt>
               </S.ModalFormLogin>
             </S.ModalBlock>

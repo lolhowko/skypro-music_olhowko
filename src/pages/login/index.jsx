@@ -26,11 +26,11 @@ export const Login = () => {
                   placeholder="Пароль"
                 />
                 <S.ModalBtnEnter>
-                  <S.ModalBtnEnterA href="../index.html">Войти</S.ModalBtnEnterA>
+                  <S.ModalBtnEnterA href="/">Войти</S.ModalBtnEnterA>
                 </S.ModalBtnEnter>
 
                 <S.ModalBtnSignerUp>
-                  <S.ModalBtnSignerUpA href="signup.html">Зарегистрироваться</S.ModalBtnSignerUpA>
+                  <S.ModalBtnSignerUpA href="/register">Зарегистрироваться</S.ModalBtnSignerUpA>
                 </S.ModalBtnSignerUp>
               </S.ModalFormLogin>
             </S.ModalBlock>
