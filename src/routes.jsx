@@ -26,7 +26,7 @@ export const AppRoutes = () => {
     return(
         <Routes>
 
-             <Route path="/" element={<Login user={user}
+             <Route path="/login" element={<Login user={user}
           onAuthButtonClick={user ? handleLogout : handleLogin}/>} />
         <Route path="/register" element={<Register />} />
         
@@ -45,7 +45,7 @@ export const AppRoutes = () => {
             /> */}
 
           <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
-            <Route path="/main" element={<MainTracks />} />
+            <Route path="/" element={<MainTracks />} />
             <Route path="/category/:id" element={<Category />} />
             <Route path="/favorites" element={<Favorites />} />
           </Route>
