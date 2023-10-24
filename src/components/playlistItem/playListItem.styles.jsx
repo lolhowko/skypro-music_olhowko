@@ -14,3 +14,10 @@ height: 100%;`
 export const SidebarImg = styled.img`
 width: 100%;
 height: auto;`
+
+// export const SkeletonSidebar = styled.div `
+//     background-color: #313131;
+//     width: 100%;
+//     height: 100%;
+//     animation: ${blink} 1s infinite alternate;
+//   `

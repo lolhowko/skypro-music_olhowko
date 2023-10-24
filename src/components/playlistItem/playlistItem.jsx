@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import * as S from './playListItem.styles'
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { categoryArr } from '../../utilitis/categoryes';
+import { NavLink } from 'react-router-dom';
 
 
 export function PlaylistItem() {
@@ -17,58 +19,20 @@ export function PlaylistItem() {
   }, []);
 
 
-    return(
-      <>
+  const fullCategory = categoryArr.map((category) => (
+    <S.SidebarItem key={category.id}>
+      {isLoading ? (
+        <Skeleton count={1} width={250} height={150} />
+      ) : (
+        <NavLink to={`/category/${category.id}`}>
+        <S.SidebarImg src={category.img} alt={category.alt} />
+      </NavLink>
+      )}
+    </S.SidebarItem>
+  ))
 
-      <S.SidebarItem>
+return(fullCategory)
 
-          {isLoading ? (
-          <Skeleton count={1} width={250} height={150} />
-          ) : (
-          <>
-          <S.SidebarLink href="/category/1">
-          <S.SidebarImg
-          src="img/playlist01.png"
-          alt="day's playlist" />
-          </S.SidebarLink>
-          </>
-          )}
-      </S.SidebarItem>
-
-      <S.SidebarItem>
-
-        {isLoading ? (
-          <Skeleton count={1} width={250} height={150} />
-          ) : (
-            <>
-          <S.SidebarLink href="/category/2">
-            <S.SidebarImg
-  
-              src="img/playlist02.png"
-              alt="day's playlist" />
-          </S.SidebarLink>
-                </>
-              )}
-      </S.SidebarItem>
-      
-      <S.SidebarItem>
-
-        {isLoading ? (
-          <Skeleton count={1} width={250} height={150} />
-          ) : (
-            <>
-          <S.SidebarLink href="/category/3">
-            <S.SidebarImg
-  
-              src="img/playlist03.png"
-              alt="day's playlist" />
-          </S.SidebarLink>
-                </>
-              )}
-      </S.SidebarItem>
-      </>
-      
-    )
 }
 
 export default PlaylistItem

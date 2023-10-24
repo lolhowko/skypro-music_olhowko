@@ -9,6 +9,10 @@ import { Register } from "./pages/register"
 export const AppRoutes = () => {
     return(
         <Routes>
+             {/* <Route path="/" element={<Login user={user}
+          onAuthButtonClick={user ? handleLogout : handleLogin}/>} />
+        <Route path="/register" element={<Register />} />
+         */}
             <Route path="/" element={<MainTracks />} />
             <Route path="/category/:id" element={<Category />} />
             <Route path="/login" element={<Login />} />
