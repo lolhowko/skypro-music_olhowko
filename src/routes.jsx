@@ -18,6 +18,7 @@ export const AppRoutes = () => {
   
       setUser({ login: "token" });
     }
+    
     const handleLogout = () => {
       
       setUser(null);
