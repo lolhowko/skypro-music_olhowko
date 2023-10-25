@@ -20,7 +20,7 @@ export const AppRoutes = () => {
     }
     
     const handleLogout = () => {
-      
+      localStorage.removeItem("user");
       setUser(null);
     }
 
