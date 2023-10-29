@@ -8,7 +8,7 @@ import { Register } from "./pages/register"
 import { ProtectedRoute } from "./components/protected-route"
 import { useState } from "react"
 
-export const AppRoutes = () => {
+export const AppRoutes = (user, onAuthButtonClick) => {
 
     const [user, setUser] = useState(null);
 
