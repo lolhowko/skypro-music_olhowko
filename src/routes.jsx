@@ -29,7 +29,6 @@ export const AppRoutes = () => {
         path="/login"
         element={
           <Login
-            user={user}
             onAuthButtonClick={user ? handleLogout : handleLogin}
           />
         }
