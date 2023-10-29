@@ -4,19 +4,22 @@ import { SideBar } from "../../components/sideBar/sideBar";
 import { TrackList } from "../../components/tracklist/tracklist";
 import { GlobalStyle } from "./global.styles";
 import * as S from '../../app.styles';
-import { getTracksAll } from "../../api.jsx";
 import { useEffect, useState } from "react";
 
 export const MainTracks = () => {
 
-  const [tracks, setTracks] = useState();
+  const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
-    getTracksAll().then((tracks) => 
-    console.log(tracks));
-    setTracks(tracks)
-  }, []);
-
+    // Заводим таймер
+    const timerId = setInterval(() => setLoading(!loading), 5000);		
+    // Данная функция вызывается при удалении компонента из DOM
+    return () => {
+        // Наводим порядок после удаления компонента
+        clearInterval(timerId);
+    };
+}, []);
 
     return (
         <>
@@ -27,6 +30,7 @@ export const MainTracks = () => {
             <S.Main>
 
             <NavMenu />
+            
             <TrackList />
             <SideBar /> 
             <AudioPlayer />
