@@ -4,11 +4,19 @@ import { SideBar } from "../../components/sideBar/sideBar";
 import { TrackList } from "../../components/tracklist/tracklist";
 import { GlobalStyle } from "./global.styles";
 import * as S from '../../app.styles';
-import { getTracks } from "../../api.jsx";
+import { getTracksAll } from "../../api.jsx";
+import { useEffect, useState } from "react";
 
 export const MainTracks = () => {
 
-getTracks().then((alltracks) => console.log(alltracks));
+  const [tracks, setTracks] = useState();
+
+  useEffect(() => {
+    getTracksAll().then((tracks) => 
+    console.log(tracks));
+    setTracks(tracks)
+  }, []);
+
 
     return (
         <>

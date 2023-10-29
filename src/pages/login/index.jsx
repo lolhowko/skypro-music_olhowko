@@ -1,13 +1,13 @@
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import * as S from '../login/login.styles'
 import { GlobalStyle } from '../main-tracks/global.styles'
 
-export const Login = ({user, onAuthButtonClick}) => {
-  const navigate = useNavigate()
+export const Login = ({ onAuthButtonClick }) => {
+  // const navigate = useNavigate()
 
-  const handleOnButtonClick = () => {
-    navigate('/', { replace: true })
-  }
+  // const handleOnButtonClick = () => {
+  //   navigate('/', { replace: true })
+  // }
 
   return (
     <>
@@ -29,16 +29,18 @@ export const Login = ({user, onAuthButtonClick}) => {
                 placeholder="Пароль"
               />
               <S.ModalBtnEnter>
-                <S.ModalBtnEnterA onClick={handleOnButtonClick}>
+                <S.ModalBtnEnterA onClick={onAuthButtonClick} to="/">
                   Войти
                 </S.ModalBtnEnterA>
               </S.ModalBtnEnter>
 
-              <S.ModalBtnSignerUp>
-                <S.ModalBtnSignerUpA href="/register">
+              <NavLink to="/register">
+                <S.ModalBtnSignerUp>
+                  {/* <S.ModalBtnSignerUpA> */}
                   Зарегистрироваться
-                </S.ModalBtnSignerUpA>
-              </S.ModalBtnSignerUp>
+                  {/* </S.ModalBtnSignerUpA> */}
+                </S.ModalBtnSignerUp>
+              </NavLink>
             </S.ModalFormLogin>
           </S.ModalBlock>
         </S.ContainerEnter>

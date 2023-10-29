@@ -1,42 +1,45 @@
-import {Routes, Route} from "react-router-dom"
-import { MainTracks } from "./pages/main-tracks"
-import { Category } from "./pages/category"
-import { NotFound } from "./pages/not-found"
-import { Login } from "./pages/login"
-import { Favorites } from "./pages/favorites"
-import { Register } from "./pages/register"
-import { ProtectedRoute } from "./components/protected-route"
-import { useState } from "react"
+import { Routes, Route } from 'react-router-dom'
+import { MainTracks } from './pages/main-tracks'
+import { Category } from './pages/category'
+import { NotFound } from './pages/not-found'
+import { Login } from './pages/login'
+import { Favorites } from './pages/favorites'
+import { Register } from './pages/register'
+import { ProtectedRoute } from './components/protected-route'
+import { useState } from 'react'
 
 export const AppRoutes = () => {
+  const [user, setUser] = useState(null)
 
-    const [user, setUser] = useState(null);
+  const handleLogin = () => {
+    localStorage.setItem('user', 'true')
 
-    const handleLogin = () => {
-      
-      localStorage.setItem('user', 'true')
-  
-      setUser({ login: "token" });
-    }
-    
-    const handleLogout = () => {
-      localStorage.removeItem("user");
-      setUser(null);
-    }
+    setUser({ login: 'token' })
+  }
 
-    return(
-        <Routes>
+  const handleLogout = () => {
+    localStorage.removeItem('user')
+    setUser(null)
+  }
 
-             <Route path="/login" element={<Login user={user}
-          onAuthButtonClick={user ? handleLogout : handleLogin}/>} />
-        <Route path="/register" element={<Register />} />
-        
+  return (
+    <Routes>
 
-            
-            {/* <Route path="/login" element={<Login />} />
+      <Route
+        path="/login"
+        element={
+          <Login
+            user={user}
+            onAuthButtonClick={user ? handleLogout : handleLogin}
+          />
+        }
+      />
+      <Route path="/register" element={<Register />} />
+
+      {/* <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} /> */}
 
-            {/* <Route element={
+      {/* <Route element={
                 <ProtectedRoute isAllowed={Boolean(user)}>
                     <Route path="/main" element={<MainTracks />} />
                     <Route path="/category/:id" element={<Category />} />
@@ -45,14 +48,13 @@ export const AppRoutes = () => {
             }
             /> */}
 
-          <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
-            <Route path="/" element={<MainTracks />} />
-            <Route path="/category/:id" element={<Category />} />
-            <Route path="/favorites" element={<Favorites />} />
-          </Route>
+      <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
+        <Route path="/" element={<MainTracks />} />
+        <Route path="/category/:id" element={<Category />} />
+        <Route path="/favorites" element={<Favorites />} />
+      </Route>
 
-            <Route path="*" element={<NotFound />} />
-
-        </Routes>
-    )
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  )
 }
