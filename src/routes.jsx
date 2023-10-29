@@ -6,21 +6,8 @@ import { Login } from './pages/login'
 import { Favorites } from './pages/favorites'
 import { Register } from './pages/register'
 import { ProtectedRoute } from './components/protected-route'
-import { useState } from 'react'
 
-export const AppRoutes = () => {
-  const [user, setUser] = useState(null)
-
-  const handleLogin = () => {
-    localStorage.setItem('user', 'true')
-
-    setUser({ login: 'token' })
-  }
-
-  const handleLogout = () => {
-    localStorage.removeItem('user')
-    setUser(null)
-  }
+export const AppRoutes = ({user, onAuthButtonClick}) => {
 
   return (
     <Routes>
@@ -29,23 +16,11 @@ export const AppRoutes = () => {
         path="/login"
         element={
           <Login
-            onAuthButtonClick={user ? handleLogout : handleLogin}
+            onAuthButtonClick={onAuthButtonClick}
           />
         }
       />
       <Route path="/register" element={<Register />} />
-
-      {/* <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} /> */}
-
-      {/* <Route element={
-                <ProtectedRoute isAllowed={Boolean(user)}>
-                    <Route path="/main" element={<MainTracks />} />
-                    <Route path="/category/:id" element={<Category />} />
-                    <Route path="/favorites" element={<Favorites />} />
-                </ProtectedRoute>
-            }
-            /> */}
 
       <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
         <Route path="/" element={<MainTracks />} />
