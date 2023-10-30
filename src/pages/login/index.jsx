@@ -3,7 +3,7 @@ import * as S from '../login/login.styles'
 import { GlobalStyle } from '../main-tracks/global.styles'
 
 export const Login = ({ onAuthButtonClick }) => {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   // const handleOnButtonClick = () => {
   //   navigate('/', { replace: true })
@@ -29,16 +29,15 @@ export const Login = ({ onAuthButtonClick }) => {
                 placeholder="Пароль"
               />
               <S.ModalBtnEnter>
-                <S.ModalBtnEnterA onClick={onAuthButtonClick} to="/">
+                <S.ModalBtnEnterA onClick={() => {onAuthButtonClick()
+                navigate('/', {replace: false})}}>
                   Войти
                 </S.ModalBtnEnterA>
               </S.ModalBtnEnter>
 
               <NavLink to="/register">
-                <S.ModalBtnSignerUp>
-                  {/* <S.ModalBtnSignerUpA> */}
+                <S.ModalBtnSignerUp onClick={() => navigate('/register', {replace: false})}>
                   Зарегистрироваться
-                  {/* </S.ModalBtnSignerUpA> */}
                 </S.ModalBtnSignerUp>
               </NavLink>
             </S.ModalFormLogin>
