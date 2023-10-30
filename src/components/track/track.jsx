@@ -24,7 +24,7 @@ export function Track({ isLoading, tracks, handleCurrentTrack }) {
           <div className="track__title-text">
 
           {isLoading ? (    
-            <S.TrackTittleLink href="http://">
+            <S.TrackTittleLink>
               {track.name} 
               {track.remix ? (<S.TrackTittleSpan>{track.remix}</S.TrackTittleSpan>) : ("")}
             </S.TrackTittleLink>
@@ -37,7 +37,7 @@ export function Track({ isLoading, tracks, handleCurrentTrack }) {
         </S.TrackTittle>
         <S.TrackAuthor>
         {isLoading ? (    
-            <S.TrackAuthorLink href="http://">
+            <S.TrackAuthorLink>
             {track.author}
             </S.TrackAuthorLink>      
       ) : (
