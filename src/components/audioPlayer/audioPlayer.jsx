@@ -5,16 +5,7 @@ import * as S from './audioPlayer.styles'
 
 
 
-export function AudioPlayer() {
-  const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    }, []);
+export function AudioPlayer({isLoading, currentTrack}) {
 
 
     return (

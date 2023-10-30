@@ -11,7 +11,7 @@ export const MainTracks = () => {
 
   const [isLoading, setLoading] = useState(false);
   const [tracks, setTracks] = useState([]);
-  const [ currentTrack, setCurrentTrack] = useState(null);
+  const [currentTrack, setCurrentTrack] = useState(null);
   const handleCurrentTrack = (track) => setCurrentTrack(track);
   
   console.log(currentTrack);
@@ -38,8 +38,6 @@ export const MainTracks = () => {
       setLoadingTrackError(error.message)
     })
   }, []);
-
-  console.log(tracks);
 
 
     return (

@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 import { AppRoutes } from './routes'
-import { trackArr } from './utilitis/trackArr'
-import { getTracksAll } from './api'
 
 function App() {
 

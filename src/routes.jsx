@@ -11,7 +11,7 @@ export const AppRoutes = ({user, onAuthButtonClick}) => {
 
   return (
     <Routes>
-
+      
       <Route
         path="/login"
         element={
