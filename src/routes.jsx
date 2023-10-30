@@ -12,8 +12,6 @@ export const AppRoutes = ({user, onAuthButtonClick}) => {
   return (
     <Routes>
 
-<Route path="/" element={<MainTracks />} />
-
       <Route
         path="/login"
         element={
