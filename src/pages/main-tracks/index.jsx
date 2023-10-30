@@ -5,41 +5,68 @@ import { TrackList } from "../../components/tracklist/tracklist";
 import { GlobalStyle } from "./global.styles";
 import * as S from '../../app.styles';
 import { useEffect, useState } from "react";
+import { getTracksAll } from "../../api";
 
 export const MainTracks = () => {
 
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [tracks, setTracks] = useState([]);
+  const [ currentTrack, setCurrentTrack] = useState(null);
+  const handleCurrentTrack = (track) => setCurrentTrack(track);
+  
+  console.log(currentTrack);
+
+  const [ loadingTrackError, setLoadingTrackError] = useState(null);
 
 
   useEffect(() => {
-    // Заводим таймер
-    const timerId = setInterval(() => setLoading(!loading), 5000);		
-    // Данная функция вызывается при удалении компонента из DOM
-    return () => {
-        // Наводим порядок после удаления компонента
-        clearInterval(timerId);
-    };
-}, []);
+  if (!isLoading) {
+    const timer = setTimeout(() => {
+      setLoading(true)
+    }, 5000)
+
+    return () => clearTimeout(timer);
+  }
+  }, [isLoading]);
+
+
+  useEffect(() => {
+    getTracksAll().then((track) => {
+      console.log(track);
+      setTracks(track);
+    }). catch((error) => {
+      setLoadingTrackError(error.message)
+    })
+  }, []);
+
+  console.log(tracks);
+
 
     return (
-        <>
-        <GlobalStyle />
+      <>
+      <GlobalStyle />
 
-        <S.Wrapper>
-          <S.Container>
-            <S.Main>
+      <S.Wrapper>
+        <S.Container>
+          <S.Main>
 
-            <NavMenu />
+              <NavMenu />
             
-            <TrackList />
-            <SideBar /> 
-            <AudioPlayer />
+              <TrackList 
+              isLoading={isLoading}
+              tracks={tracks}
+              handleCurrentTrack={handleCurrentTrack}
+              // loadingTracksError={loadingTracksError}
+              />
 
-            </S.Main>
+              <SideBar /> 
+              <AudioPlayer />
+
+          </S.Main>
             
-            <footer className="footer"></footer>
-          </S.Container>
-        </S.Wrapper>
-        </>
+          <footer className="footer"></footer>
+        </S.Container>
+      </S.Wrapper>
+      </>
     )
 }

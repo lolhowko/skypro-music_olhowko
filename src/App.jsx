@@ -5,16 +5,7 @@ import { getTracksAll } from './api'
 
 function App() {
 
-  const [currentTrack, setCurrentTrack] = useState(null)
   const [user, setUser] = useState(false)
-  const [tracks, setArrTracks] = useState(trackArr)
-
-  useEffect(() => {
-    getTracksAll().then((trackArr) => {
-      console.log(trackArr)
-      setArrTracks(trackArr)
-    })
-  }, [])
 
   const handleLogin = () => {
     localStorage.setItem('user', 'true')
@@ -29,9 +20,6 @@ function App() {
         <AppRoutes
           user={user}
           onAuthButtonClick={handleLogin}
-          tracks={tracks}
-          setArrTracks={setArrTracks}
-          currentTrack={currentTrack}
         />
       </div>
     </>
