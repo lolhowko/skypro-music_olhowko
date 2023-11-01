@@ -1,36 +1,36 @@
-
-import { AudioPlayer } from "./components/audioPlayer/audioPlayer";
-import  { NavMenu } from './components/navMenu/navMenu';
-import { SideBar } from "./components/sideBar/sideBar";
-import { TrackList } from "./components/tracklist/tracklist";
-import * as S from './app.styles'
-import { GlobalStyle } from "./global.styles";
-
+import { useEffect, useState } from 'react'
+import { AppRoutes } from './routes'
+import { useNavigate } from 'react-router-dom';
 
 function App() {
-    return (
-      <>
-      <GlobalStyle />
-      <div className="App">
-        <S.Wrapper>
-          <S.Container>
-            <S.Main>
 
-            <NavMenu />
-            <TrackList />
-            <SideBar /> 
-            <AudioPlayer />
+  const [user, setUser] = useState(false)
 
-            </S.Main>
-            
-            <footer className="footer"></footer>
-          </S.Container>
-        </S.Wrapper>
-  
-      </div>
-      </>
-    );
+  const handleLogin = (e) => {
+  const navigate = useNavigate()
+
+    e.preventDefault();
+
+    localStorage.setItem('user', 'true')
+    const curentLocalStorage = localStorage.getItem('user')
+    console.log(curentLocalStorage)
+    setUser(curentLocalStorage)
+
+    navigate('/', {replace: true})
+
   }
-  
 
-export default App;
+
+  return (
+    <>
+      <div className="App">
+        <AppRoutes
+          user={user}
+          onAuthButtonClick={handleLogin}
+        />
+      </div>
+    </>
+  )
+}
+
+export default App

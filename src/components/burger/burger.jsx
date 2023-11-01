@@ -20,13 +20,13 @@ export const Burger = () => {
             <S.NavMenu className="menu">
             <S.MenuList c>
             <S.MenuItem>
-                <S.MenuLink href="#" className="menu__link">Главное</S.MenuLink>
+                <S.MenuLink href="#">Главное</S.MenuLink>
             </S.MenuItem>
             <S.MenuItem>
-                <S.MenuLink href="#" className="menu__link">Мой плейлист</S.MenuLink>
+                <S.MenuLink href="/favorites">Мой плейлист</S.MenuLink>
             </S.MenuItem>
             <S.MenuItem>
-                <S.MenuLink href="../signin.html" className="menu__link">Войти</S.MenuLink>
+                <S.MenuLink href="../signin.html">Войти</S.MenuLink>
             </S.MenuItem>
             </S.MenuList>
             </S.NavMenu>

@@ -1,7 +1,69 @@
+import { AudioPlayer } from "../../components/audioPlayer/audioPlayer"
+import  { NavMenu } from '../../components/navMenu/navMenu';
+import { SideBar } from "../../components/sideBar/sideBar";
+import { TrackList } from "../../components/tracklist/tracklist";
+import { GlobalStyle } from "./global.styles";
+import * as S from '../../app.styles';
+import { useEffect, useState } from "react";
+import { getTracksAll } from "../../api";
+
 export const MainTracks = () => {
+
+  const [isLoading, setLoading] = useState(false);
+  const [tracks, setTracks] = useState([]);
+  const [currentTrack, setCurrentTrack] = useState(null);
+  const handleCurrentTrack = (track) => setCurrentTrack(track);
+
+  const [ loadingTrackError, setLoadingTrackError] = useState(null);
+
+
+  useEffect(() => {
+  if (!isLoading) {
+    const timer = setTimeout(() => {
+      setLoading(true)
+    }, 5000)
+
+    return () => clearTimeout(timer);
+  }
+  }, [isLoading]);
+
+
+  useEffect(() => {
+    getTracksAll().then((track) => {
+      setTracks(track);
+    }). catch((error) => {
+      setLoadingTrackError(error.message)
+    })
+  }, []);
+
+
     return (
-        <div>
-            Main Tracks
-        </div>
+      <>
+      <GlobalStyle />
+
+      <S.Wrapper>
+        <S.Container>
+          <S.Main>
+
+              <NavMenu />
+            
+              <TrackList 
+              isLoading={isLoading}
+              tracks={tracks}
+              handleCurrentTrack={handleCurrentTrack}
+              // loadingTracksError={loadingTracksError}
+              />
+
+              <SideBar isLoading={isLoading}/> 
+
+              {currentTrack && 
+              <AudioPlayer isLoading={isLoading} currentTrack={currentTrack}/>}
+
+          </S.Main>
+            
+          <footer className="footer"></footer>
+        </S.Container>
+      </S.Wrapper>
+      </>
     )
 }

@@ -5,17 +5,7 @@ import * as S from './audioPlayer.styles'
 
 
 
-export function AudioPlayer() {
-  const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    }, []);
-
+export function AudioPlayer({isLoading, currentTrack}) {
 
     return (
         <S.Bar>
@@ -54,30 +44,30 @@ export function AudioPlayer() {
               <S.PlayerTrackPlay>
                 <S.PlayerContain>
                   <S.TrackPlayImage>
-                  {isLoading ? (
-                  <Skeleton count={1} width={51} height={51} />
-                  ) : (
+                  {isLoading ?  (
                     <S.TrackPlaySvg alt="music">
                       <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                     </S.TrackPlaySvg>
-                  )}
+                  ) : (
+                    <Skeleton count={1} width={51} height={51} />
+                    )}
 
                   </S.TrackPlayImage>
                   <S.TrackPlayAuthor>
 
-                    {isLoading ? (
-                        <Skeleton count={1} />
-                        ) : (<S.TrackPlayAuthorLink href="http://">Ты та...</S.TrackPlayAuthorLink>
-                        )}
+                    {isLoading ? (<S.TrackPlayAuthorLink href="http://">{currentTrack.name}.</S.TrackPlayAuthorLink>
+                        ) : (
+                          <Skeleton count={1} />
+                          )}
 
                   </S.TrackPlayAuthor>
                   <S.TrackPlayAlbum >
 
-                    {isLoading ? (
-                          <Skeleton count={1} />
+                    {isLoading ?  (
+                            <S.TrackPlayAlbumLink href="http://">{currentTrack.author}</S.TrackPlayAlbumLink>
                           ) : (
-                            <S.TrackPlayAlbumLink href="http://">Баста</S.TrackPlayAlbumLink>
-                          )}
+                            <Skeleton count={1} />
+                            )}
                     
                   </S.TrackPlayAlbum>
                 </S.PlayerContain>
