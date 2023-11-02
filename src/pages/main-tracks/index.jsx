@@ -9,7 +9,7 @@ import { getTracksAll } from "../../api";
 
 export const MainTracks = () => {
 
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setloading] = useState(false);
   const [tracks, setTracks] = useState([]);
   const [currentTrack, setCurrentTrack] = useState(null);
   const handleCurrentTrack = (track) => setCurrentTrack(track);
