@@ -9,7 +9,7 @@ import { getTracksAll } from "../../api";
 
 export const MainTracks = () => {
 
-  const [isLoading, setloading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [tracks, setTracks] = useState([]);
   const [currentTrack, setCurrentTrack] = useState(null);
   const handleCurrentTrack = (track) => setCurrentTrack(track);
@@ -40,7 +40,7 @@ export const MainTracks = () => {
   useEffect(() => {
     async function getTracks (){
    try {
-     setloading (true);//состояние загрузки началось
+     setLoading (true);//состояние загрузки началось
      setTracksError(null);
      await getTracksAll().then((tracks) => {
      console.log(tracks);//проверка что получаем из апи
@@ -49,12 +49,22 @@ export const MainTracks = () => {
    } catch(error) {
      setTracksError(error.message)//если ошибка
    } finally{
-     setloading(false)//состояние загрузки закончилось после получения данных из апи
+     setLoading(false)//состояние загрузки закончилось после получения данных из апи
    }
    
      }
      getTracks();
    }, [])
+
+
+  //  useEffect(() => {
+  //   getTracksAll().then((track) => {
+  //     console.log(track);
+  //     setTracks(track);
+  //   }). catch((error) => {
+  //     setLoadingTrackError(error.message)
+  //   })
+  // }, []);
 
 
     return (
