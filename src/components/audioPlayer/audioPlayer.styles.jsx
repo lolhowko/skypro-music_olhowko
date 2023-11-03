@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const AudioComponent = styled.audio`
+  width: 600px;
+  display: ;
+`
 
 export const Bar = styled.div`
     position: absolute;

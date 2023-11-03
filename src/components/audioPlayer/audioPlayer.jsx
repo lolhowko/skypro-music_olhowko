@@ -3,6 +3,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './audioPlayer.styles'
 import BarControls from './barControls'
+import { VolumeBlock } from './volumeBlock'
 
 export function AudioPlayer({ isLoading, currentTrack }) {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -11,6 +12,8 @@ export function AudioPlayer({ isLoading, currentTrack }) {
   const [duration, setDuration] = useState(0)
 
   const [repeatTrack, setRepeatTrack] = useState(false)
+
+  const [volume, setVolume] = useState(0.5)
 
   const audioRef = useRef(null)
 
@@ -46,14 +49,14 @@ export function AudioPlayer({ isLoading, currentTrack }) {
 
   return (
     <S.Bar>
-      <audio
+      <S.AudioComponent
         controls
         ref={audioRef}
         onTimeUpdate={onTimeUpdate}
         onLoadedMetadata={onLoadedMetadata}
       >
         <source src={currentTrack.track_file} />
-      </audio>
+      </S.AudioComponent>
 
       <S.BarContent>
         <S.BarPlayeerProgress
@@ -63,12 +66,12 @@ export function AudioPlayer({ isLoading, currentTrack }) {
         ></S.BarPlayeerProgress>
         <S.BarPlayerBlock>
           <S.BarPlayer>
-
-            <BarControls 
-            handleStartStop={handleStartStop}
-            repeatTrack={repeatTrack}
-            toggleTrackRepeat={toggleTrackRepeat}
-            isPlaying={isPlaying}
+            <BarControls
+              handleStartStop={handleStartStop}
+              repeatTrack={repeatTrack}
+              toggleTrackRepeat={toggleTrackRepeat}
+              isPlaying={isPlaying}
+              audioRef={audioRef}
             />
 
             <S.PlayerTrackPlay>
@@ -116,7 +119,14 @@ export function AudioPlayer({ isLoading, currentTrack }) {
               </S.TrackPlayLikeDis>
             </S.PlayerTrackPlay>
           </S.BarPlayer>
-          <S.BarVolumeBlock className="volume">
+
+          <VolumeBlock
+            volume={volume}
+            setVolume={setVolume}
+            audioRef={audioRef}
+          />
+
+          {/* <S.BarVolumeBlock className="volume">
             <S.VolumeContent>
               <S.VolumeImage>
                 <S.VolumeSvg alt="volume">
@@ -131,7 +141,7 @@ export function AudioPlayer({ isLoading, currentTrack }) {
                 />
               </S.VolumeProgress>
             </S.VolumeContent>
-          </S.BarVolumeBlock>
+          </S.BarVolumeBlock> */}
         </S.BarPlayerBlock>
       </S.BarContent>
     </S.Bar>
