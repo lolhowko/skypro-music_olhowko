@@ -8,6 +8,7 @@ export function TrackList({
   tracks,
   handleCurrentTrack,
   loadingTracksError,
+  tracksError,
 }) {
   return (
     <S.MainCenterblock className="centerblock">
@@ -30,13 +31,14 @@ export function TrackList({
         </S.ContentTittle>
         <S.ContentPlaylist className="playlist">
 
-        {loadingTracksError ? (
+        {tracksError ? (
           <div>Не удалось загрузить плейлист, попробуйте позже</div>
         ) : (
           <Track
             isLoading={isLoading}
             tracks={tracks}
             handleCurrentTrack={handleCurrentTrack}
+            tracksError = {tracksError}
           />
         )}
 

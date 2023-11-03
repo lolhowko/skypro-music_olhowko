@@ -14,7 +14,7 @@ export const MainTracks = () => {
   const [currentTrack, setCurrentTrack] = useState(null);
   const handleCurrentTrack = (track) => setCurrentTrack(track);
 
-  const [ loadingTrackError, setLoadingTrackError] = useState(null);
+  const [tracksError, setTracksError] = useState(null)
 
 
   useEffect(() => {
@@ -37,6 +37,36 @@ export const MainTracks = () => {
   }, []);
 
 
+  useEffect(() => {
+    async function getTracks (){
+   try {
+     setLoading (true);//состояние загрузки началось
+     setTracksError(null);
+     await getTracksAll().then((tracks) => {
+     console.log(tracks);//проверка что получаем из апи
+     setTracks(tracks);
+   })//получение из апи треков
+   } catch(error) {
+     setTracksError(error.message)//если ошибка
+   } finally{
+     setLoading(false)//состояние загрузки закончилось после получения данных из апи
+   }
+   
+     }
+     getTracks();
+   }, [])
+
+
+  //  useEffect(() => {
+  //   getTracksAll().then((track) => {
+  //     console.log(track);
+  //     setTracks(track);
+  //   }). catch((error) => {
+  //     setLoadingTrackError(error.message)
+  //   })
+  // }, []);
+
+
     return (
       <>
       <GlobalStyle />
@@ -51,7 +81,7 @@ export const MainTracks = () => {
               isLoading={isLoading}
               tracks={tracks}
               handleCurrentTrack={handleCurrentTrack}
-              // loadingTracksError={loadingTracksError}
+              tracksError={tracksError}
               />
 
               <SideBar isLoading={isLoading}/> 

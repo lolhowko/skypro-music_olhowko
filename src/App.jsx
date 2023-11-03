@@ -3,11 +3,11 @@ import { AppRoutes } from './routes'
 import { useNavigate } from 'react-router-dom';
 
 function App() {
+  const navigate = useNavigate()
 
   const [user, setUser] = useState(false)
 
   const handleLogin = (e) => {
-  const navigate = useNavigate()
 
     e.preventDefault();
 
