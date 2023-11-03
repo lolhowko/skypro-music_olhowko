@@ -28,7 +28,17 @@ width: 100%;
 height: 5px;
 background: #2e2e2e;`
 
-export const BarPlayerBlock = styled.div`height: 73px;
+export const BarPlayerProgressTime = styled.span`
+  color: #696969;
+  text-align: right;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-size: 16px;
+  line-height: 18px; /* 112.5% */
+  letter-spacing: 0.016px;
+`;
+
+export const BarPlayerBlock = styled.div`
+height: 73px;
 display: -webkit-box;
 display: -ms-flexbox;
 display: flex;

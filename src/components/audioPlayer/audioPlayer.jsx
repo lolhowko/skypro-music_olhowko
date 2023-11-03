@@ -4,6 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './audioPlayer.styles'
 import BarControls from './barControls'
 import { VolumeBlock } from './volumeBlock'
+import BarPlayerProgress from './BarPlayerProgress'
 
 export function AudioPlayer({ isLoading, currentTrack }) {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -50,7 +51,6 @@ export function AudioPlayer({ isLoading, currentTrack }) {
   return (
     <S.Bar>
       <S.AudioComponent
-        controls
         ref={audioRef}
         onTimeUpdate={onTimeUpdate}
         onLoadedMetadata={onLoadedMetadata}
@@ -59,11 +59,13 @@ export function AudioPlayer({ isLoading, currentTrack }) {
       </S.AudioComponent>
 
       <S.BarContent>
-        <S.BarPlayeerProgress
+
+      <BarPlayerProgress
           duration={duration}
           timeProgress={timeProgress}
           audioRef={audioRef}
-        ></S.BarPlayeerProgress>
+        />
+        
         <S.BarPlayerBlock>
           <S.BarPlayer>
             <BarControls
