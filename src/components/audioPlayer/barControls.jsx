@@ -1,67 +1,55 @@
 import { useState } from 'react'
-import * as S from './audioPlayer.styles'
+import * as S from './barControls.styles'
 
-export function BarControls({
-  handleStartStop,
-  repeatTrack,
-  toggleTrackRepeat,
-  isPlaying,
-}) {
+export function BarControlsItem(props) {
+  const [isActive, setIsActive] = useState(false)
 
   return (
-    <S.BarControls>
-      <S.PlayerBtnPrev
-        alt="prev"
-        onClick={() => {
-          alert('Еще не реализовано')
-        }}
+    <S.playerBtn
+      $style={props.alt}
+      onClick={() => {
+        setIsActive(!isActive)
+        props.click()
+      }}
+    >
+      <S.playerBtnSvg
+        $style={props.alt}
+        alt={props.alt}
+        $active={props.repeatTrack}
       >
-        <S.PlayerBtnPrevSvg alt="prev">
-          <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
-        </S.PlayerBtnPrevSvg>
-      </S.PlayerBtnPrev>
-      <S.PlayerBtnPlay className="_btn" onClick={handleStartStop}>
-        <S.PlayerBtnPlaySvg alt="play">
-          {isPlaying ? (
-            <use xlinkHref="/img/icon/sprite.svg#icon-pause" />
-          ) : (
-            <use xlinkHref="/img/icon/sprite.svg#icon-play" />
-          )}
-        </S.PlayerBtnPlaySvg>
-      </S.PlayerBtnPlay>
-      <S.PlayerBtnNext
-        alt="next"
-        onClick={() => {
-          alert('Еще не реализовано')
-        }}
-      >
-        <S.PlayerBtnNextSvg>
-          <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
-        </S.PlayerBtnNextSvg>
-      </S.PlayerBtnNext>
-      <S.PlayerBtnRepeat
-        className="_btn-icon"
-        alt="repeat"
-        onClick={toggleTrackRepeat}
-        repeatTrack={repeatTrack}
-      >
-        <S.PlayerBtnRepeatSvg>
-          <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
-        </S.PlayerBtnRepeatSvg>
-      </S.PlayerBtnRepeat>
-      <S.PlayerBtnShuffle
-        className="_btn-icon"
-        alt="shuffle"
-        onClick={() => {
-          alert('Еще не реализовано')
-        }}
-      >
-        <S.PlayerBtnShuffletSvg alt="shuffle">
-          <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
-        </S.PlayerBtnShuffletSvg>
-      </S.PlayerBtnShuffle>
-    </S.BarControls>
+        <use xlinkHref={`img/icon/sprite.svg#icon-${props.alt}`} />
+      </S.playerBtnSvg>
+    </S.playerBtn>
   )
 }
 
-export default BarControls
+export default function BarControls({isPlaying, toggleTrackRepeat, repeatTrack, handleStartStop}) {
+  return (
+    <S.BarControls>
+      <BarControlsItem
+        alt="prev"
+        click={() => {
+          alert('Еще не реализовано')
+        }}
+      />
+      <BarControlsItem alt={isPlaying ? 'pause' : 'play'} click={handleStartStop} />
+      <BarControlsItem
+        alt="next"
+        click={() => {
+          alert('Еще не реализовано')
+        }}
+      />
+      <BarControlsItem
+        alt="repeat"
+        click={toggleTrackRepeat}
+        repeatTrack={repeatTrack}
+      />
+      <BarControlsItem
+        alt="shuffle"
+        click={() => {
+          alert('Еще не реализовано')
+        }}
+      />
+    </S.BarControls>
+  )
+}
