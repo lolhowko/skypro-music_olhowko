@@ -14,7 +14,6 @@ export function AudioPlayer({ isLoading, currentTrack }) {
 
   const [repeatTrack, setRepeatTrack] = useState(false)
 
-  const [volume, setVolume] = useState(0.5)
 
   const audioRef = useRef(null)
 
@@ -123,8 +122,6 @@ export function AudioPlayer({ isLoading, currentTrack }) {
           </S.BarPlayer>
 
           <VolumeBlock
-            volume={volume}
-            setVolume={setVolume}
             audioRef={audioRef}
           />
 

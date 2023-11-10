@@ -1,28 +1,20 @@
 import { useEffect, useState } from 'react'
 import * as S from './audioPlayer.styles'
 
-export function VolumeBlock({ volume, setVolume }) {
-  const [offVolume, setOffVolume] = useState(false)
-
-  const handleVolume = (e) => {
-    setVolume(e.target.value)
-  }
-
-  const handleOffVolume = () => {
-    setOffVolume(!offVolume)
-
-    if (offVolume) {
-      setVolume(0)
-    } else {
-      setOffVolume(volume)
-    }
-  }
+export function VolumeBlock({ audioRef }) {
+    const [volume, setVolume] = useState(50);
+    useEffect(() => {
+      if (audioRef) {
+        audioRef.current.volume = volume / 100;
+        console.log(audioRef.current.volume);
+      }
+    }, [volume, audioRef]);
 
   return (
     <S.BarVolumeBlock className="volume">
       <S.VolumeContent>
         <S.VolumeImage>
-          <S.VolumeSvg alt="volume" onClick={handleOffVolume}>
+          <S.VolumeSvg alt="volume">
             <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
           </S.VolumeSvg>
         </S.VolumeImage>
@@ -30,12 +22,10 @@ export function VolumeBlock({ volume, setVolume }) {
           <S.VolumeProgressLine
             className=" _btn"
             type="range"
-            name="range"
             min={0}
-            max={1}
-            step={0.01}
+            max={100}
             value={volume}
-            onChange={handleVolume}
+            onChange={(e) => setVolume(e.target.value)}
           />
         </S.VolumeProgress>
       </S.VolumeContent>
