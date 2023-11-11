@@ -60,13 +60,12 @@ export async function loginUserApi(email, password) {
     body: JSON.stringify({
       email,
       password,
+      username:email,
     }),
     headers: {
       'content-type': 'application/json',
     },
   }).then((response) => {
-
-    console.log(response)
 
     if (response.status === 400) {
       return response.json().then((errorResponse) => {

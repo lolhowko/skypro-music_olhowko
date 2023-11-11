@@ -21,6 +21,8 @@ export default function AuthPage({ setUser }) {
 
     try {
       const response = await loginUserApi(email, password)
+      console.log(response)
+
       console.log(email)
       console.log(response.username)
 
