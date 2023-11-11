@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AppRoutes } from './routes'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from './context/userContext'
 
 function App() {
   const navigate = useNavigate()
@@ -18,12 +19,17 @@ function App() {
     navigate('/', { replace: true })
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.href = "/Auth";
+  };
+
   return (
-    <>
+    <UserContext.Provider value={{user, handleLogout}}>
       <div className="App">
         <AppRoutes user={user} setUser={setUser} onAuthButtonClick={handleLogin} />
       </div>
-    </>
+    </UserContext.Provider>
   )
 }
 
