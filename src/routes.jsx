@@ -6,6 +6,7 @@ import { Login } from './pages/login'
 import { Favorites } from './pages/favorites'
 import { Register } from './pages/register'
 import { ProtectedRoute } from './components/protected-route'
+import AuthPage from './pages/register/authPage'
 
 export const AppRoutes = ({user, onAuthButtonClick}) => {
 
@@ -21,7 +22,9 @@ export const AppRoutes = ({user, onAuthButtonClick}) => {
           />
         }
       />
-      <Route path="/register" element={<Register />} />
+      {/* <Route path="/register" element={<Register />} /> */}
+      <Route path="/register" element={<AuthPage />} />
+
 
       <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
         <Route path="/" element={<MainTracks />} />

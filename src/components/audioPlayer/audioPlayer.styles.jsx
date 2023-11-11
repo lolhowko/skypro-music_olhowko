@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const AudioComponent = styled.audio`
+  width: 600px;
+  display: ;
+`
 
 export const Bar = styled.div`
     position: absolute;
@@ -24,7 +28,73 @@ width: 100%;
 height: 5px;
 background: #2e2e2e;`
 
-export const BarPlayerBlock = styled.div`height: 73px;
+export const BarPlayerProgressTime = styled.span`
+  color: #696969;
+  text-align: right;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-size: 16px;
+  line-height: 18px; /* 112.5% */
+  letter-spacing: 0.016px;
+`;
+
+export const StyledProgressInput = styled.input`
+  --progress-height: 8px;
+  --progress-color: #b672ff;
+  --progress-color: ${(props) => props.$color ?? "#b672ff"};
+
+  --progress-bg-color: #2e2e2e;
+
+  margin: 0;
+  width: 100%;
+  height: var(--progress-height);
+  -webkit-appearance: none;
+  cursor: pointer;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+
+  &::-webkit-slider-runnable-track {
+    position: relative;
+    height: var(--progress-height);
+    background: var(--progress-bg-color);
+  }
+  &::-webkit-slider-thumb {
+    --thumb-height: 1px;
+    --thumb-width: 1px;
+    position: relative;
+    -webkit-appearance: none;
+    width: var(--thumb-width, var(--thumb-height));
+    box-shadow: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0
+      100vmax var(--progress-color);
+  }
+
+  &::-webkit-slider-runnable-track {
+    background: var(--progress-bg-color);
+  }
+
+  /* FF */
+  &::-moz-range-track {
+    width: 100%;
+    height: var(--progress-height);
+    background: var(--progress-bg-color);
+    border: none;
+    border-radius: 0px;
+  }
+  &::-moz-range-thumb {
+    border: none;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: transparent;
+  }
+  &::-moz-range-progress {
+    background-color: var(--progress-color);
+    height: var(--progress-height);
+  }
+`;
+
+export const BarPlayerBlock = styled.div`
+height: 73px;
 display: -webkit-box;
 display: -ms-flexbox;
 display: flex;
@@ -61,75 +131,6 @@ display: flex;
 -ms-flex-direction: row;
 flex-direction: row;
 padding: 0 27px 0 31px;`
-
-
-export const PlayerBtn = styled.div`
-padding: 5px;
-display: -webkit-box;
-display: -ms-flexbox;
-display: flex;
--webkit-box-align: center;
--ms-flex-align: center;
-align-items: center;`
-
-
-export const PlayerBtnPrev = styled(PlayerBtn)`
-margin-right: 23px;`
-
-export const PlayerBtnPrevSvg = styled.svg`
-  width: 15px;
-  height: 14px;`
-
-export const PlayerBtnPlay = styled(PlayerBtn)`
-padding: 5px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-      margin-right: 23px;`
-
-export const PlayerBtnPlaySvg = styled.svg`
-  width: 22px;
-  height: 20px;
-  fill: #d9d9d9;`
-
-
-export const PlayerBtnNext = styled(PlayerBtn)`
-margin-right: 28px;
-fill: #a53939;`
-
-
-export const PlayerBtnNextSvg = styled.svg`
-width: 15px;
-height: 14px;
-fill: inherit;
-stroke: #d9d9d9;`
-
-export const PlayerBtnRepeat = styled(PlayerBtn)`
-margin-right: 24px;`
-
-export const PlayerBtnRepeatSvg = styled.svg`
-width: 18px;
-height: 12px;
-fill: transparent;
-stroke: #696969;`
-
-export const PlayerBtnShuffle = styled(PlayerBtn)`
-display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;`
-
-
-export const PlayerBtnShuffletSvg = styled.svg`
-width: 19px;
-height: 12px;
-fill: transparent;
-stroke: #696969;`
 
 export const PlayerTrackPlay = styled.div`
 display: -webkit-box;
