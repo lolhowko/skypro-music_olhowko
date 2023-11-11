@@ -8,23 +8,22 @@ import { Register } from './pages/register'
 import { ProtectedRoute } from './components/protected-route'
 import AuthPage from './pages/register/authPage'
 
-export const AppRoutes = ({user, onAuthButtonClick}) => {
-
+export const AppRoutes = ({ user, setUser, onAuthButtonClick }) => {
   return (
     <Routes>
-        {/* <Route path="/" element={<MainTracks />} /> */}
 
-      <Route
+      <Route path="/Auth" element={<AuthPage setUser={setUser} />} />
+
+      {/* <Route
         path="/login"
         element={
           <Login
             onAuthButtonClick={onAuthButtonClick}
           />
         }
-      />
+      /> */}
       {/* <Route path="/register" element={<Register />} /> */}
-      <Route path="/register" element={<AuthPage />} />
-
+      {/* <Route path="/login" element={<AuthPage />} /> */}
 
       <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
         <Route path="/" element={<MainTracks />} />

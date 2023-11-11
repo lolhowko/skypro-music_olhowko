@@ -17,12 +17,13 @@ export async function getTracksAll() {
 }
 
 // ЗАРЕГЕСТРИРОВАТЬСЯ
+
 export async function registrationUserApi(email, password) {
-  return fetch(`${APIHOST}user/signup`, {
-    method: POST,
+  return fetch(`${APIHOST}user/signup/`, {
+    method: "POST",
     body: JSON.stringify({
-      email,
-      password,
+      email: email,
+      password: password,
       username: email,
     }),
     headers: {
@@ -54,17 +55,19 @@ export async function registrationUserApi(email, password) {
 // ВОЙТИ
 
 export async function loginUserApi(email, password) {
-  return fetch(`${APIHOST}user/login`, {
-    method: POST,
+  return fetch(`${APIHOST}user/login/`, {
+    method: "POST",
     body: JSON.stringify({
       email,
       password,
-      username: email,
     }),
     headers: {
       'content-type': 'application/json',
     },
   }).then((response) => {
+
+    console.log(response)
+
     if (response.status === 400) {
       return response.json().then((errorResponse) => {
         if (errorResponse.email) {
@@ -73,7 +76,7 @@ export async function loginUserApi(email, password) {
         if (errorResponse.password) {
           throw new Error(errorResponse.password)
         }
-        throw new Error("Произошла неизвестная ошибка.");
+        throw new Error("Произошла неизвестная ошибка!");
       })
     }
     if (response.status === 401) {
@@ -86,4 +89,29 @@ export async function loginUserApi(email, password) {
     }
     return response.json();
   })
+}
+
+export async function getToken(email, password) {
+  const response = await fetch(
+    "https://skypro-music-api.skyeng.tech/user/token/",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+      headers: {
+        // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
+        "content-type": "application/json",
+      },
+    }
+  );
+
+  const data = await response.json;
+
+  if (!response.ok) {
+    throw new Error("Ошибка получения токена");
+  } else {
+    return data;
+  }
 }
