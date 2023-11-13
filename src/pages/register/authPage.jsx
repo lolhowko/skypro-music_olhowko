@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import * as S from './authPage.styles'
 import { useEffect, useState } from 'react'
 import { getToken, loginUserApi, registrationUserApi } from '../../api'
+import { useUserContext } from '../../context/userContext'
 
 export default function AuthPage({ setUser }) {
   const [error, setError] = useState(null)
@@ -14,8 +15,7 @@ export default function AuthPage({ setUser }) {
 
   const [isLoginMode, setIsLoginMode] = useState(false)
 
-
-  const handleLogin = async ({ email, password }) => {
+  const handleLogin = async () => {
     // alert(`Выполняется вход: ${email} ${password}`)
     // setError('Неизвестная ошибка входа')
 
@@ -38,25 +38,47 @@ export default function AuthPage({ setUser }) {
     }
   }
 
+  // const handleLogin = () => {
+  //   if (email === '' && password === '' && repeatPassword === '') {
+  //     setError('Введите все значения')
+  //   } else {
+  //     setIsLoginMode(true)
+  //     loginUserApi(email, password)
+  //     getToken(email, password)
+  //       .then((response) => {
+  //         setUser("user", response.access);
+  //         setIsLogin(true);
+  //         setRegUser(email);
+  //         console.log(regUser);
+  //       })
+  //       .then(() => {
+  //         setIsLoginMode(false)
+  //       })
+
+  //     // alert(`Выполняется регистрация: ${email} ${password}`);
+  //     // setError("Неизвестная ошибка регистрации");
+  //   }
+  // }
+
   const handleRegister = async () => {
     // alert(`Выполняется регистрация: ${email} ${password}`)
     // setError('Неизвестная ошибка регистрации')
 
     if (password !== repeatPassword) {
-      setError("Пароли не совпадают");
+      setError('Пароли не совпадают')
     } else {
       try {
-        const response = await registrationUserApi(email, password);
-        console.log(response);
-        setOffButton(true);
-        setUser(response.username);
-        localStorage.setItem("user", response.username);
-        window.location.href = "/";
+        const response = await registrationUserApi(email, password)
+        console.log(response)
+        setOffButton(true)
+        setUser(response.username)
+        localStorage.setItem('user', response.username)
+        window.location.href = '/'
       } catch (currentError) {
-        setError(currentError.message);
-        console.log(error);
+        setError(currentError.message)
+        console.log(error)
       } finally {
-        setOffButton(false);
+        setOffButton(false)
       }
     }
   }

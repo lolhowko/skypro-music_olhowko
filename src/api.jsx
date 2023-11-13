@@ -90,6 +90,8 @@ export async function loginUserApi(email, password) {
   })
 }
 
+// ТОКЕН
+
 export async function getToken(email, password) {
   const response = await fetch(
     "https://skypro-music-api.skyeng.tech/user/token/",
@@ -105,6 +107,8 @@ export async function getToken(email, password) {
       },
     }
   );
+  // .then((response) => response.json())
+  // .then((json) => console.log(json));
 
   const data = await response.json;
 
