@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import * as S from './burger.styles'
+import { UserContext } from "../../context/userContext";
 
 
 export const Burger = () => {
@@ -7,6 +8,7 @@ export const Burger = () => {
   
     const toggleVisibility = () => setVisible(!visible);
 
+    const { handleLogout } = useContext(UserContext);
   
     return (
       <div>
@@ -18,15 +20,15 @@ export const Burger = () => {
   
         {!visible && (
             <S.NavMenu className="menu">
-            <S.MenuList c>
+            <S.MenuList>
             <S.MenuItem>
                 <S.MenuLink href="#">Главное</S.MenuLink>
             </S.MenuItem>
             <S.MenuItem>
                 <S.MenuLink href="/favorites">Мой плейлист</S.MenuLink>
             </S.MenuItem>
-            <S.MenuItem>
-                <S.MenuLink href="../signin.html">Войти</S.MenuLink>
+            <S.MenuItem onClick={handleLogout}>
+                <S.MenuLink href="../Auth">Выйти</S.MenuLink>
             </S.MenuItem>
             </S.MenuList>
             </S.NavMenu>

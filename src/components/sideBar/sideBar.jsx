@@ -1,13 +1,17 @@
+import { useContext } from "react";
 import { PlaylistItem } from "../playlistItem/playlistItem";
 import * as S from './sideBar.styles'
+import { UserContext } from "../../context/userContext";
 
 
 export function SideBar() {
+  const { user, handleLogout } = useContext(UserContext)
+
     return(
         <S.MainSidebar>
         <S.SidebarPersonal>
-          <S.SidebarPersonalName>Sergey.Ivanov</S.SidebarPersonalName>
-          <S.SidebarIcon>
+          <S.SidebarPersonalName>{user}</S.SidebarPersonalName>
+          <S.SidebarIcon  onClick={handleLogout}>
             <svg alt="logout">
               <use xlinkHref="img/icon/sprite.svg#logout"></use>
             </svg>
