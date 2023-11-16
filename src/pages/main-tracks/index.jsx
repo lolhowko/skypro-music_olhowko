@@ -43,7 +43,6 @@ export const MainTracks = () => {
      setLoading (true);//состояние загрузки началось
      setTracksError(null);
      await getTracksAll().then((tracks) => {
-     console.log(tracks);//проверка что получаем из апи
      setTracks(tracks);
    })//получение из апи треков
    } catch(error) {
