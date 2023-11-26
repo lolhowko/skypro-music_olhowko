@@ -1,9 +1,13 @@
-import { store } from '../indexStore'
+// export const allTracksSelector = (store) => store.tracks.allTracks;
+// export const isPlayingSelector = (store) => store.tracks.isPlaying;
+// export const currentTrackSelector = (store) => store.tracks.currentTrack;
+// export const indexCurrentTrackSelector = (store) => store.tracks.indexCurrentTrack;
+// export const shuffledAllTracksSelector = (store) => store.tracks.shuffledAllTracks;
+// export const shuffledSelector = (store) => store.tracks.shuffled;
 
-export const trackSelector = (store) => store.tracks
-
-export const playingTrackSelector = (store) => store.tracks.playingTrack
-export const setPlayingTrackSelector = (store) => store.tracks.setPlayingTrack
-export const isPlayingSelector = (store) => store.tracks.isPlaying
-export const idPlayingTrackSelector = (store) =>store.tracks.idPlayingTrack
-export const shuffledTracksSelector = (store) => store.tracks.shuffledTracks
+export const allTracksSelector = (store) => store.tracks.allTracks;
+export const CurrentTrackSelector = (store)=> store.tracks.currentTrack;
+export const isPlayingSelector = (store) => store.tracks.isPlaying;
+export const indexCurrentTrackSelector = (store) => store.tracks.indexCurrentTrack;
+export const shuffleAllTracksSelector = (store)=> store.tracks.shuffleAllTracks;
+export const shuffleSelector = (store)=> store.tracks.shuffle;
