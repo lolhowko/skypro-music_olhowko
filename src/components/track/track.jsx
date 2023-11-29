@@ -3,14 +3,18 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useSelector } from 'react-redux';
 import {
+  allTracksSelector,
   currentTrackSelector,
   isPlayingSelector,
 } from "../../store/selectors/indexSelectors"
 
 
-export function Track({ isLoading, tracks, handleCurrentTrack }) {
+export function Track({ isLoading, handleCurrentTrack }) {
   const currentTrack = useSelector(currentTrackSelector);
   const isPlaying = useSelector(isPlayingSelector);
+
+  const tracks = useSelector(allTracksSelector)
+
 
   const fullPlayList = tracks.map((track) =>
     <S.PlaylistItem key={track.id} onClick={() => handleCurrentTrack(track)}>

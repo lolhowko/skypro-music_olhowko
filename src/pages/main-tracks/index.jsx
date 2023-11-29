@@ -79,14 +79,6 @@ export const MainTracks = () => {
     getTracks()
   }, [])
 
-  //  useEffect(() => {
-  //   getTracksAll().then((track) => {
-  //     console.log(track);
-  //     setTracks(track);
-  //   }). catch((error) => {
-  //     setLoadingTrackError(error.message)
-  //   })
-  // }, []);
 
   return (
     <>
@@ -99,7 +91,6 @@ export const MainTracks = () => {
 
             <TrackList
               isLoading={isLoading}
-              tracks={tracks}
               handleCurrentTrack={handleCurrentTrack}
               tracksError={tracksError}
             />
