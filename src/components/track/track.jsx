@@ -29,14 +29,6 @@ export function Track({ isLoading, handleCurrentTrack }) {
               </S.TrackTittleSvg>
             )}
 
-          {/* {isLoading ? (          
-              <S.TrackTittleSvg alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note" />
-              </S.TrackTittleSvg>
-        ) : (
-          <Skeleton count={1} width={51} height={51}/>
-        )} */}
-
           </S.TrackTittleImage>
           <div className="track__title-text">
 

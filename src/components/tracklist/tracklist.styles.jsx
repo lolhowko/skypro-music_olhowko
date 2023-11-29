@@ -40,7 +40,7 @@ align-items: center;
 justify-content: space-between;
 margin-bottom: 24px;`
 
-export const ContentPlaylist = styled.div`
+export const ContentPlaylist = styled.ul`
 display: -webkit-box;
 display: -ms-flexbox;
 display: flex;

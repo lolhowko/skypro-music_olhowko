@@ -1,5 +1,15 @@
 import { useState } from 'react'
 import * as S from './barControls.styles'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  allTracksSelector,
+  currentTrackSelector,
+  indexCurrentTrackSelector,
+  isPlayingSelector,
+  shuffleAllTracksSelector,
+  shuffleSelector,
+} from '../../store/selectors/indexSelectors'
+import { setNextTrack, setPrevTrack, toggleShuffleTrack } from '../../store/slices/slices'
 
 export function BarControlsItem(props) {
   const [isActive, setIsActive] = useState(false)
@@ -15,7 +25,7 @@ export function BarControlsItem(props) {
       <S.playerBtnSvg
         $style={props.alt}
         alt={props.alt}
-        $active={props.repeatTrack}
+        $active={props.alt}
       >
         <use xlinkHref={`img/icon/sprite.svg#icon-${props.alt}`} />
       </S.playerBtnSvg>
@@ -23,20 +33,60 @@ export function BarControlsItem(props) {
   )
 }
 
-export default function BarControls({isPlaying, toggleTrackRepeat, repeatTrack, handleStartStop}) {
+export default function BarControls({
+  toggleTrackRepeat,
+  repeatTrack,
+  handleStartStop,
+}) {
+  const dispatch = useDispatch()
+  const tracks = useSelector(allTracksSelector)
+  const currentTrack = useSelector(currentTrackSelector)
+
+  const isPlaying = useSelector(isPlayingSelector)
+
+  const shuffle = useSelector(shuffleSelector)
+  const shuffleAllTracks = useSelector(shuffleAllTracksSelector)
+  const indexCurrentTrack = useSelector(indexCurrentTrackSelector)
+
+  const arrayTracksAll = shuffle ? shuffleAllTracks : tracks
+
+  const toggleCurrentTrack = (alt) => {
+    if (alt === 'next' && indexCurrentTrack < arrayTracksAll.length - 1) {
+      const indexNextTrack = arrayTracksAll.indexOf(currentTrack) + 1
+      return dispatch(
+        setNextTrack({
+          nextTrack: arrayTracksAll[indexNextTrack],
+          indexNextTrack,
+        })
+      )
+    }
+    if (alt === 'prev' && indexCurrentTrack > 0) {
+      const indexPrevTrack = arrayTracksAll.indexOf(currentTrack) - 1
+      return dispatch(
+        setPrevTrack({
+          prevTrack: arrayTracksAll[indexPrevTrack],
+          indexPrevTrack,
+        })
+      )
+    }
+  }
+
   return (
     <S.BarControls>
       <BarControlsItem
         alt="prev"
         click={() => {
-          alert('Еще не реализовано')
+          toggleCurrentTrack('prev')
         }}
       />
-      <BarControlsItem alt={isPlaying ? 'pause' : 'play'} click={handleStartStop} />
+      <BarControlsItem
+        alt={isPlaying ? 'pause' : 'play'}
+        click={handleStartStop}
+      />
       <BarControlsItem
         alt="next"
         click={() => {
-          alert('Еще не реализовано')
+          toggleCurrentTrack('next')
         }}
       />
       <BarControlsItem
@@ -47,7 +97,7 @@ export default function BarControls({isPlaying, toggleTrackRepeat, repeatTrack, 
       <BarControlsItem
         alt="shuffle"
         click={() => {
-          alert('Еще не реализовано')
+          dispatch(toggleShuffleTrack(!shuffle))
         }}
       />
     </S.BarControls>

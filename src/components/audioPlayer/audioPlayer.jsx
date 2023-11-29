@@ -5,35 +5,60 @@ import * as S from './audioPlayer.styles'
 import BarControls from './barControls'
 import { VolumeBlock } from './volumeBlock'
 import BarPlayerProgress from './BarPlayerProgress'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  allTracksSelector,
+  indexCurrentTrackSelector,
+  isPlayingSelector,
+  shuffleAllTracksSelector,
+  shuffleSelector,
+} from '../../store/selectors/indexSelectors'
+import { setIsPlaying, setNextTrack } from '../../store/slices/slices'
 
 export function AudioPlayer({ isLoading, currentTrack }) {
-  const [isPlaying, setIsPlaying] = useState(false)
+  const dispatch = useDispatch()
+  const tracks = useSelector(allTracksSelector)
+
+  // // const [isPlaying, setIsPlaying] = useState(false)
+  const isPlaying = useSelector(isPlayingSelector)
+
+  const shuffle = useSelector(shuffleSelector)
+  const shuffleAllTracks = useSelector(shuffleAllTracksSelector)
+  const indexCurrentTrack = useSelector(indexCurrentTrackSelector)
+
+  const arrayTracksAll = shuffle ? shuffleAllTracks : tracks
 
   const [timeProgress, setTimeProgress] = useState(0)
   const [duration, setDuration] = useState(0)
 
   const [repeatTrack, setRepeatTrack] = useState(false)
 
-
   const audioRef = useRef(null)
 
   const handleStartStop = () => {
     if (isPlaying) {
       audioRef.current.pause()
-      setIsPlaying(false)
+      dispatch(setIsPlaying(false))
     } else {
       audioRef.current.play()
-      setIsPlaying(true)
+      dispatch(setIsPlaying(true))
     }
   }
 
   useEffect(() => {
-    if (isPlaying && currentTrack) {
-      audioRef.current.play()
-    } else {
-      audioRef.current.pause()
+    handleStartStop()
+    audioRef.current.onended = () => {
+      if (indexCurrentTrack < arrayTracksAll.length - 1) {
+        dispatch(
+          setNextTrack({
+            nextTrack: arrayTracksAll[arrayTracksAll.indexOf(currentTrack) + 1],
+            indexNextTrack: arrayTracksAll.indexOf(currentTrack) + 1,
+          })
+        )
+      }
+      dispatch(setIsPlaying(false))
     }
-  }, [isPlaying, currentTrack, audioRef])
+  }, [currentTrack])
 
   const onLoadedMetadata = () => {
     setDuration(audioRef.current.duration)
@@ -53,18 +78,18 @@ export function AudioPlayer({ isLoading, currentTrack }) {
         ref={audioRef}
         onTimeUpdate={onTimeUpdate}
         onLoadedMetadata={onLoadedMetadata}
+        src={currentTrack.track_file}
       >
-        <source src={currentTrack.track_file} />
+        
       </S.AudioComponent>
 
       <S.BarContent>
-
-      <BarPlayerProgress
+        <BarPlayerProgress
           duration={duration}
           timeProgress={timeProgress}
           audioRef={audioRef}
         />
-        
+
         <S.BarPlayerBlock>
           <S.BarPlayer>
             <BarControls
@@ -121,26 +146,8 @@ export function AudioPlayer({ isLoading, currentTrack }) {
             </S.PlayerTrackPlay>
           </S.BarPlayer>
 
-          <VolumeBlock
-            audioRef={audioRef}
-          />
+          <VolumeBlock audioRef={audioRef} />
 
-          {/* <S.BarVolumeBlock className="volume">
-            <S.VolumeContent>
-              <S.VolumeImage>
-                <S.VolumeSvg alt="volume">
-                  <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
-                </S.VolumeSvg>
-              </S.VolumeImage>
-              <S.VolumeProgress className="_btn">
-                <S.VolumeProgressLine
-                  className=" _btn"
-                  type="range"
-                  name="range"
-                />
-              </S.VolumeProgress>
-            </S.VolumeContent>
-          </S.BarVolumeBlock> */}
         </S.BarPlayerBlock>
       </S.BarContent>
     </S.Bar>
