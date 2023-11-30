@@ -41,6 +41,7 @@ justify-content: space-between;
 margin-bottom: 24px;`
 
 export const ContentPlaylist = styled.ul`
+height: calc(100vh - 350px);
 display: -webkit-box;
 display: -ms-flexbox;
 display: flex;
@@ -48,7 +49,7 @@ display: flex;
 -webkit-box-direction: normal;
 -ms-flex-direction: column;
 flex-direction: column;
-overflow-y: auto;`
+overflow-y: scroll;`
 
 export const ContentTittleCol = styled.div`
 font-style: normal;
