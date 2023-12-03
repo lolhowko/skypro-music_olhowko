@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as S from './authPage.styles'
 import { useEffect, useState } from 'react'
 import { getToken, loginUserApi, registrationUserApi } from '../../api'
 import { useUserContext } from '../../context/userContext'
 
-export default function AuthPage({ setUser }) {
+export default function AuthPage() {
   const [error, setError] = useState(null)
 
   const [email, setEmail] = useState('')
@@ -15,10 +15,13 @@ export default function AuthPage({ setUser }) {
 
   const [isLoginMode, setIsLoginMode] = useState(false)
 
+  const navigate = useNavigate();
+
   const handleLogin = async () => {
     // alert(`Выполняется вход: ${email} ${password}`)
     // setError('Неизвестная ошибка входа')
 
+  
     try {
       const response = await loginUserApi(email, password)
       console.log(response)
@@ -26,11 +29,10 @@ export default function AuthPage({ setUser }) {
       console.log(email)
       console.log(response.username)
 
-      setUser(response.username)
-      localStorage.setItem('user', JSON.stringify(response.username))
+      localStorage.setItem('user', response.username)
 
       setOffButton(true)
-      window.location.href = '/'
+      navigate('/')
     } catch (currentError) {
       setError(currentError.message)
     } finally {
@@ -38,27 +40,6 @@ export default function AuthPage({ setUser }) {
     }
   }
 
-  // const handleLogin = () => {
-  //   if (email === '' && password === '' && repeatPassword === '') {
-  //     setError('Введите все значения')
-  //   } else {
-  //     setIsLoginMode(true)
-  //     loginUserApi(email, password)
-  //     getToken(email, password)
-  //       .then((response) => {
-  //         setUser("user", response.access);
-  //         setIsLogin(true);
-  //         setRegUser(email);
-  //         console.log(regUser);
-  //       })
-  //       .then(() => {
-  //         setIsLoginMode(false)
-  //       })
-
-  //     // alert(`Выполняется регистрация: ${email} ${password}`);
-  //     // setError("Неизвестная ошибка регистрации");
-  //   }
-  // }
 
   const handleRegister = async () => {
     // alert(`Выполняется регистрация: ${email} ${password}`)
@@ -71,9 +52,8 @@ export default function AuthPage({ setUser }) {
         const response = await registrationUserApi(email, password)
         console.log(response)
         setOffButton(true)
-        setUser(response.username)
         localStorage.setItem('user', response.username)
-        window.location.href = '/'
+        navigate('/')
       } catch (currentError) {
         setError(currentError.message)
         console.log(error)

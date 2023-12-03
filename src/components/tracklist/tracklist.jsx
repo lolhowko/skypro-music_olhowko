@@ -5,7 +5,6 @@ import * as S from './tracklist.styles'
 
 export function TrackList({
   isLoading,
-  tracks,
   handleCurrentTrack,
   loadingTracksError,
   tracksError,
@@ -36,17 +35,10 @@ export function TrackList({
         ) : (
           <Track
             isLoading={isLoading}
-            tracks={tracks}
             handleCurrentTrack={handleCurrentTrack}
             tracksError = {tracksError}
           />
         )}
-
-          {/* <Track 
-          isLoading={isLoading}
-          tracks={tracks}
-          handleCurrentTrack={handleCurrentTrack}
-          /> */}
 
         </S.ContentPlaylist>
       </S.CenterblockContent>

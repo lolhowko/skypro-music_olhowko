@@ -6,7 +6,6 @@ export function VolumeBlock({ audioRef }) {
     useEffect(() => {
       if (audioRef) {
         audioRef.current.volume = volume / 100;
-        console.log(audioRef.current.volume);
       }
     }, [volume, audioRef]);
 

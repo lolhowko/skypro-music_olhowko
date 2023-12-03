@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const PlaylistItem = styled.div`
 width: 100%;
@@ -116,3 +116,27 @@ line-height: 24px;
 text-align: right;
 color: #696969;`
 
+const animationPointPulse = () => css`
+  animation: pulse 0.6s ease-in-out infinite both;
+
+  @keyframes pulse {
+    0%,
+    to {
+      transform: scale(0.5);
+    }
+    50% {
+      transform: scale(1);
+    }
+  }
+`;
+
+export const PointPlaying = styled.div`
+  position: relative; // Нужно будет в будущем, для позиционирования эффекта
+  text-align: center;
+  padding: 8px;
+  width: 16px;
+  height: 16px;
+  background-color: #b672ff;
+  border-radius: 50%;
+  ${(props) => (props.$playing ? animationPointPulse : "")};
+`;
