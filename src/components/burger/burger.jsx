@@ -21,7 +21,7 @@ export const Burger = () => {
         <S.NavMenu className="menu">
           <S.MenuList>
             <S.MenuItem>
-              <S.MenuLink href="#">Главное</S.MenuLink>
+              <S.MenuLink href="/">Главное</S.MenuLink>
             </S.MenuItem>
             <S.MenuItem>
               <S.MenuLink href="/favorites">Мой плейлист</S.MenuLink>

@@ -82,12 +82,12 @@ export const MainTracks = () => {
 
   return (
     <>
-      <GlobalStyle />
+      {/* <GlobalStyle /> */}
 
-      <S.Wrapper>
+      {/* <S.Wrapper>
         <S.Container>
           <S.Main>
-            <NavMenu />
+            <NavMenu /> */}
 
             <TrackList
               isLoading={isLoading}
@@ -95,7 +95,7 @@ export const MainTracks = () => {
               tracksError={tracksError}
             />
 
-            <SideBar isLoading={isLoading} />
+            {/* <SideBar isLoading={isLoading} />
 
             {currentTrack && (
               <AudioPlayer isLoading={isLoading} currentTrack={currentTrack} />
@@ -104,7 +104,7 @@ export const MainTracks = () => {
 
           <footer className="footer"></footer>
         </S.Container>
-      </S.Wrapper>
+      </S.Wrapper> */}
     </>
   )
 }
