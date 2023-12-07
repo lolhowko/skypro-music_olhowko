@@ -7,6 +7,8 @@ const initialState = {
   isPlaying: false,
   shuffle: false,
   shuffleAllTracks: [],
+  favouritesTracks: [],
+  currentPlaylist: [],
 }
 
 const getShuffleAllTracks = (array) => {
@@ -22,8 +24,20 @@ export const tracksSlice = createSlice({
       state.allTracks = action.payload
     },
 
+    setFavouriteTracksAll: (state, action) => {
+      state.favouritesTracks = action.payload
+    },
+
     setIsPlaying: (state, action) => {
       state.isPlaying = action.payload
+    },
+
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload
+    },
+
+    setCurrentPlaylist: (state, action) => {
+      state.currentPlaylist = action.payload
     },
 
     setCurrentTrack: (state, action) => {
@@ -54,11 +68,14 @@ export const tracksSlice = createSlice({
 
 export const {
   setAllTracks,
+  setFavouriteTracksAll,
   setIsPlaying,
   setCurrentTrack,
   setNextTrack,
   setPrevTrack,
   toggleShuffleTrack,
+  setCurrentPage,
+  setCurrentPlaylist,
 } = tracksSlice.actions
 
 export default tracksSlice.reducer
