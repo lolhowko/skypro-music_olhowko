@@ -22,6 +22,7 @@ export const authSlice = createSlice({
   initialState: getAuthFromLocalStorage() ?? initialState,
 
   reducers: {
+    
     setAuth: (state, action) => {
       const { access, refresh, user } = action.payload ?? initialState
       state.access = access
