@@ -61,6 +61,17 @@ export const tracksQuery = createApi({
   reducerPath: `tracksQuery`,
   tagTypes: ['Tracks', 'Favorites'],
   baseQuery: baseQueryWithReauth,
+  prepareHeaders: (headers, { getState }) => {
+    const token = getState().auth.access
+
+    console.log('accessToken', token)
+
+    if (token) {
+      headers.set('authorization', `Bearer ${token}`)
+    }
+    return headers
+  },
+
   endpoints: (build) => ({
     getTracksAll: build.query({
       query: () => 'catalog/track/all/',
@@ -84,9 +95,27 @@ export const tracksQuery = createApi({
           : [{ type: 'Tracks', id: 'LIST' }],
     }),
 
-    setLike: build.mutation({}),
+    setLike: build.mutation({
+      query: (track) => ({
+        url: `catalog/track/${track.id}/favorite/`,
+        method: "POST",
+      }),
+      invalidatesTags: [
+        { type: "Favorites", id: "LIST" },
+        { type: "Tracks", id: "LIST" },
+      ],
+    }),
 
-    setDislike: build.mutation({}),
+    setDislike: build.mutation({
+      query: (track) => ({
+        url: `catalog/track/${track.id}/favorite/`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [
+        { type: "Favorites", id: "LIST" },
+        { type: "Tracks", id: "LIST" },
+      ],
+    }),
   }),
 })
 

@@ -17,9 +17,10 @@ export function BarControlsItem(props) {
   return (
     <S.playerBtn
       $style={props.alt}
-      onClick={() => {
+      onClick={(event) => {
         setIsActive(!isActive)
         props.click()
+        event.stopPropagation();
       }}
     >
       <S.playerBtnSvg
