@@ -23,20 +23,20 @@ export default function AuthPage() {
 
   const [postToken] = useAccessTokenUserMutation()
 
-  const responseToken = async () => {
-    await postToken({ email, password })
-      .unwrap()
-      .then((token) => {
-        console.log('token', token)
-        dispatch(
-          setAuth({
-            access: token.access,
-            refresh: token.refresh,
-            user: JSON.parse(localStorage.getItem('user')),
-          })
-        )
-      })
-  }
+  // const responseToken = async () => {
+  //   await postToken({ email, password })
+  //     .unwrap()
+  //     .then((token) => {
+  //       console.log('token', token)
+  //       dispatch(
+  //         setAuth({
+  //           access: token.access,
+  //           refresh: token.refresh,
+  //           user: localStorage.getItem('user'),
+  //         })
+  //       )
+  //     })
+  // }
 
   const handleLogin = async () => {
     // alert(`Выполняется вход: ${email} ${password}`)
@@ -46,24 +46,22 @@ export default function AuthPage() {
       const response = await loginUserApi(email, password)
       console.log(response)
 
-      console.log(email)
-      console.log(response.username)
+      console.log("USERNAME", response.username)
 
-      if (response) {
-        getToken(email, password).then((result) => {
-          console.log(result)
-          dispatch(setAuth(result))
-        })
-      }
+      // if (response) {
+      //   getToken(email, password).then((result) => {
+      //     console.log(result)
+      //     dispatch(setAuth(result))
+      //   })
+      // }
 
-      localStorage.setItem('user', response.username)
-
-      responseToken()
+      dispatch(setAuth(response))
 
       setOffButton(true)
       navigate('/')
     } catch (currentError) {
       setError(currentError.message)
+      console.log(currentError)
     } finally {
       setOffButton(false)
     }
@@ -80,8 +78,10 @@ export default function AuthPage() {
         const response = await registrationUserApi(email, password)
         console.log(response)
         setOffButton(true)
-        localStorage.setItem('user', response.username)
-        responseToken()
+
+        // responseToken()
+        handleLogin()
+
         navigate('/')
       } catch (currentError) {
         setError(currentError.message)

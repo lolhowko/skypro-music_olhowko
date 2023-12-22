@@ -12,9 +12,10 @@ function getAuthFromLocalStorage() {
 }
 
 const initialState = {
+  id: null,
   access: null,
   refresh: null,
-  user: null,
+  username: null,
 }
 
 export const authSlice = createSlice({
@@ -24,10 +25,10 @@ export const authSlice = createSlice({
   reducers: {
     
     setAuth: (state, action) => {
-      const { access, refresh, user } = action.payload ?? initialState
+      const { access, refresh, username } = action.payload ?? initialState
       state.access = access
       state.refresh = refresh
-      state.user = user
+      state.username = username
 
       localStorage.setItem(AUTH_INFO, JSON.stringify(state))
     },

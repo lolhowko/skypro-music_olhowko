@@ -20,7 +20,7 @@ export async function getTracksAll() {
 
 export async function registrationUserApi(email, password) {
   return fetch(`${APIHOST}user/signup/`, {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify({
       email: email,
       password: password,
@@ -43,18 +43,56 @@ export async function registrationUserApi(email, password) {
         }
       })
     }
-    if(response.status === 500) {
-      throw new Error("Сервер сломался");
+    if (response.status === 500) {
+      throw new Error('Сервер сломался')
     }
-    return response.json();
+    return response.json()
   })
-
-
 }
 
 // ВОЙТИ
 
 export async function loginUserApi(email, password) {
+  const [loginRes, tokenRes] = await Promise.all([
+    fetch(`${APIHOST}user/token/`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      headers: {
+        'content-type': 'application/json',
+      },
+    }),
+
+    fetch(`${APIHOST}user/login/`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      headers: {
+        'content-type': 'application/json',
+      },
+    }),
+  ])
+  const loginJSONdata = await loginRes.json()
+  const tokenJSONdata = await tokenRes.json()
+
+  if(!loginRes.ok) {
+    throw new Error(loginJSONdata.details ?? "Server Error")
+  }
+  if(!tokenRes.ok) {
+    throw new Error(tokenJSONdata.details ?? "Server Error")
+  }
+
+  return{
+    ...loginJSONdata,
+    ...tokenJSONdata
+  }
+}
+
+/* export async function loginUserApi(email, password) {
   return fetch(`${APIHOST}user/login/`, {
     method: "POST",
     body: JSON.stringify({
@@ -88,33 +126,33 @@ export async function loginUserApi(email, password) {
     }
     return response.json();
   })
-}
+} */
 
 // ТОКЕН
 
 export async function getToken(email, password) {
   const response = await fetch(
-    "https://skypro-music-api.skyeng.tech/user/token/",
+    'https://skypro-music-api.skyeng.tech/user/token/',
     {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify({
         email: email,
         password: password,
       }),
       headers: {
         // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
     }
-  );
+  )
   // .then((response) => response.json())
   // .then((json) => console.log(json));
 
-  const data = await response.json();
+  const data = await response.json()
 
   if (!response.ok) {
-    throw new Error("Ошибка получения токена");
+    throw new Error('Ошибка получения токена')
   } else {
-    return data;
+    return data
   }
 }

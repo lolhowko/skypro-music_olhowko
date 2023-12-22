@@ -1,4 +1,4 @@
-import { fetchBaseQuery, createApi } from '@reduxjs/toolkit/query'
+import { fetchBaseQuery, createApi } from '@reduxjs/toolkit/query/react'
 
 export const tokenQuery = createApi({
   reducerPath: 'tokenQuery',
@@ -9,7 +9,7 @@ export const tokenQuery = createApi({
   }),
 
   endpoints: (build) => ({
-    acessTokenUser: build.mutation({
+    accessTokenUser: build.mutation({
       query: (body) => ({
         url: 'user/token/',
         method: 'POST',
@@ -17,8 +17,8 @@ export const tokenQuery = createApi({
         headers: {
           'content-type': 'application/json',
         },
-        invalidatesTags: [{ type: 'Tracks', id: 'LIST' }],
       }),
+      invalidatesTags: [{ type: 'Tracks', id: 'LIST' }],
     }),
 
     refreshTokenUser: build.mutation({
@@ -29,8 +29,8 @@ export const tokenQuery = createApi({
         headers: {
           'content-type': 'application/json',
         },
-        invalidatesTags: [{ type: 'Tracks', id: 'LIST' }],
       }),
+      invalidatesTags: [{ type: 'Tracks', id: 'LIST' }],
     }),
   }),
 })
