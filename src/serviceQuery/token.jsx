@@ -9,7 +9,7 @@ export const tokenQuery = createApi({
   }),
 
   endpoints: (build) => ({
-    acessTokenUser: build.query({
+    acessTokenUser: build.mutation({
       query: (body) => ({
         url: 'user/token/',
         method: 'POST',
@@ -36,6 +36,6 @@ export const tokenQuery = createApi({
 })
 
 export const {
-    useAccessTokenUserQuery,
+    useAccessTokenUserMutation,
     useRefreshTokenUserMutation,
 } = tokenQuery;

@@ -16,11 +16,12 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     },
   })
 
-  const result = await baseQuery(args, api, extraOptions)
+  const result = await baseQuery(args, api, extraOptions);
 
   if (result?.error?.status !== 401) {
     return result
   }
+
   const LogOut = () => {
     api.dispatch(setAuth(null))
   }

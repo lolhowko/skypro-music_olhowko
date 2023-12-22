@@ -110,7 +110,7 @@ export async function getToken(email, password) {
   // .then((response) => response.json())
   // .then((json) => console.log(json));
 
-  const data = await response.json;
+  const data = await response.json();
 
   if (!response.ok) {
     throw new Error("Ошибка получения токена");

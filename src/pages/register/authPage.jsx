@@ -3,8 +3,14 @@ import * as S from './authPage.styles'
 import { useEffect, useState } from 'react'
 import { getToken, loginUserApi, registrationUserApi } from '../../api'
 import { useUserContext } from '../../context/userContext'
+import { useDispatch } from 'react-redux'
+import { useAccessTokenUserMutation } from '../../serviceQuery/token'
+import { setAuth } from '../../store/slices/AuthorizationSlice'
 
 export default function AuthPage() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const [error, setError] = useState(null)
 
   const [email, setEmail] = useState('')
@@ -15,13 +21,27 @@ export default function AuthPage() {
 
   const [isLoginMode, setIsLoginMode] = useState(false)
 
-  const navigate = useNavigate();
+  const [postToken] = useAccessTokenUserMutation()
+
+  const responseToken = async () => {
+    await postToken({ email, password })
+      .unwrap()
+      .then((token) => {
+        console.log('token', token)
+        dispatch(
+          setAuth({
+            access: token.access,
+            refresh: token.refresh,
+            user: JSON.parse(localStorage.getItem('user')),
+          })
+        )
+      })
+  }
 
   const handleLogin = async () => {
     // alert(`Выполняется вход: ${email} ${password}`)
     // setError('Неизвестная ошибка входа')
 
-  
     try {
       const response = await loginUserApi(email, password)
       console.log(response)
@@ -29,7 +49,16 @@ export default function AuthPage() {
       console.log(email)
       console.log(response.username)
 
+      if (response) {
+        getToken(email, password).then((result) => {
+          console.log(result)
+          dispatch(setAuth(result))
+        })
+      }
+
       localStorage.setItem('user', response.username)
+
+      responseToken()
 
       setOffButton(true)
       navigate('/')
@@ -39,7 +68,6 @@ export default function AuthPage() {
       setOffButton(false)
     }
   }
-
 
   const handleRegister = async () => {
     // alert(`Выполняется регистрация: ${email} ${password}`)
@@ -53,6 +81,7 @@ export default function AuthPage() {
         console.log(response)
         setOffButton(true)
         localStorage.setItem('user', response.username)
+        responseToken()
         navigate('/')
       } catch (currentError) {
         setError(currentError.message)
