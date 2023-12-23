@@ -88,6 +88,12 @@ const iconsSvg = {
     fill: transparent;
     stroke: #696969;
   `,
+  like: css`
+    width: 19px;
+    height: 12px;
+    fill: transparent;
+    stroke: ${(props) => (props.$active ? '#FFFFFF' : '#696969')};
+  `,
 };
 
 const playerBtnSvgMixin = (alt) => {
