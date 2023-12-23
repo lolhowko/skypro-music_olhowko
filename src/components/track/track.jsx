@@ -21,9 +21,11 @@ export function Track({ isLoading, track, isFavorites = false }) {
   const [setLike] = useSetLikeMutation();
   const [setDislike] = useSetDislikeMutation();
 
+  const { id } = (localStorage.getItem("auth"))
+
   const auth = (localStorage.getItem("user"));
 
-  const isUserLike = Boolean(track?.stared_user?.find((user) => user.id === auth.id)
+  const isUserLike = Boolean(track?.stared_user?.find((user) => user.id === id)
   );
   const [isLiked, setIsLiked] = useState(isUserLike);
 
