@@ -26,7 +26,7 @@ export function BarControlsItem(props) {
       <S.playerBtnSvg
         $style={props.alt}
         alt={props.alt}
-        $active={props.alt}
+        $active={props.isActive}
       >
         <use xlinkHref={`img/icon/sprite.svg#icon-${props.alt}`} />
       </S.playerBtnSvg>
@@ -94,12 +94,14 @@ export default function BarControls({
         alt="repeat"
         click={toggleTrackRepeat}
         repeatTrack={repeatTrack}
+        isActive={repeatTrack}
       />
       <BarControlsItem
         alt="shuffle"
         click={() => {
           dispatch(toggleShuffleTrack(!shuffle))
         }}
+        isActive={shuffle}
       />
     </S.BarControls>
   )

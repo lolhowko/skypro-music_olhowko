@@ -21,7 +21,7 @@ export const Layout = () => {
               <S.Main>
                 <NavMenu />
     
-                <Outlet/>
+                <Outlet/> 
     
                 <SideBar isLoading={isLoading} />
     
