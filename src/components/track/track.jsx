@@ -21,7 +21,7 @@ export function Track({ isLoading, track, isFavorites = false }) {
   const [setLike] = useSetLikeMutation();
   const [setDislike] = useSetDislikeMutation();
 
-//JSON.stringify чтобы не слетали лайки (добавила по рекомендации с ответа)
+//JSON.stringify чтобы не слетали лайки (добавила по рекомендации с ответач )
 
   const { id } = JSON.stringify((localStorage.getItem("auth")))
 

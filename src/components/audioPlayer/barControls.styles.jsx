@@ -91,7 +91,7 @@ const iconsSvg = {
   like: css`
     width: 19px;
     height: 12px;
-    fill: inherit;
+    fill: transparent;
     stroke: ${(props) => (props.$active ? '#B672FF' : '#696969')};
   `,
 };
