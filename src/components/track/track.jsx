@@ -21,9 +21,11 @@ export function Track({ isLoading, track, isFavorites = false }) {
   const [setLike] = useSetLikeMutation();
   const [setDislike] = useSetDislikeMutation();
 
-  const { id } = (localStorage.getItem("auth"))
+//JSON.stringify чтобы не слетали лайки (добавила по рекомендации с ответа)
 
-  const auth = (localStorage.getItem("user"));
+  const { id } = JSON.stringify((localStorage.getItem("auth")))
+
+  const auth = JSON.stringify((localStorage.getItem("user")));
 
   const isUserLike = Boolean(track?.stared_user?.find((user) => user.id === id)
   );
