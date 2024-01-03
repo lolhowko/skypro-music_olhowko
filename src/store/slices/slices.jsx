@@ -70,6 +70,10 @@ export const tracksSlice = createSlice({
       state.indexCurrentTrack = indexPrevTrack
     },
 
+    setCategoryArr: (state, action) => {
+      state.categoryArr = action.payload;
+    },
+
     toggleShuffleTrack: (state, action) => {
       state.shuffle = action.payload
       state.shuffleAllTracks =
