@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import * as S from './burger.styles'
 import { useUserContext } from '../../context/userContext'
+import { Link } from 'react-router-dom'
 
 export const Burger = () => {
   const [visible, setVisible] = useState(true)
@@ -20,15 +21,21 @@ export const Burger = () => {
       {!visible && (
         <S.NavMenu className="menu">
           <S.MenuList>
-            <S.MenuItem>
-              <S.MenuLink href="#">Главное</S.MenuLink>
-            </S.MenuItem>
-            <S.MenuItem>
-              <S.MenuLink href="/favorites">Мой плейлист</S.MenuLink>
-            </S.MenuItem>
-            <S.MenuItem onClick={handleLogout}>
-              <S.MenuLink href="../Auth">Выйти</S.MenuLink>
-            </S.MenuItem>
+            <Link to="/">
+              <S.MenuItem>
+                <S.MenuLink href="/">Главное</S.MenuLink>
+              </S.MenuItem>
+            </Link>
+            <Link to="/favorites">
+              <S.MenuItem>
+                <S.MenuLink href="/favorites">Мой плейлист</S.MenuLink>
+              </S.MenuItem>
+            </Link>
+            <Link>
+              <S.MenuItem onClick={handleLogout}>
+                <S.MenuLink href="../Auth">Выйти</S.MenuLink>
+              </S.MenuItem>
+            </Link>
           </S.MenuList>
         </S.NavMenu>
       )}

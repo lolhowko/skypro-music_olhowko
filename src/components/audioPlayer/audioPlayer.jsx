@@ -103,7 +103,7 @@ export function AudioPlayer({ isLoading, currentTrack }) {
             <S.PlayerTrackPlay>
               <S.PlayerContain>
                 <S.TrackPlayImage>
-                  {isLoading ? (
+                  {!isLoading ? (
                     <S.TrackPlaySvg alt="music">
                       <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                     </S.TrackPlaySvg>
@@ -112,7 +112,7 @@ export function AudioPlayer({ isLoading, currentTrack }) {
                   )}
                 </S.TrackPlayImage>
                 <S.TrackPlayAuthor>
-                  {isLoading ? (
+                  {!isLoading ? (
                     <S.TrackPlayAuthorLink href="http://">
                       {currentTrack.name}.
                     </S.TrackPlayAuthorLink>
@@ -121,7 +121,7 @@ export function AudioPlayer({ isLoading, currentTrack }) {
                   )}
                 </S.TrackPlayAuthor>
                 <S.TrackPlayAlbum>
-                  {isLoading ? (
+                  {!isLoading ? (
                     <S.TrackPlayAlbumLink href="http://">
                       {currentTrack.author}
                     </S.TrackPlayAlbumLink>

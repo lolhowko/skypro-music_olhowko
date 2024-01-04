@@ -5,12 +5,12 @@ import { useUserContext } from '../../context/userContext'
 
 export function SideBar() {
   const { handleLogout } = useUserContext()
-  const user = localStorage.getItem('user')
+  const {username} = JSON.parse(localStorage.getItem('auth'))
 
   return (
     <S.MainSidebar>
       <S.SidebarPersonal>
-        <S.SidebarPersonalName>{user}</S.SidebarPersonalName> 
+        <S.SidebarPersonalName>{username}</S.SidebarPersonalName> 
         <S.SidebarIcon onClick={handleLogout}>
           <svg alt="logout">
             <use xlinkHref="img/icon/sprite.svg#logout"></use>
