@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './audioPlayer.styles'
-import BarControls from './barControls'
+import BarControls, { BarControlsItem } from './barControls'
 import { VolumeBlock } from './volumeBlock'
 import BarPlayerProgress from './BarPlayerProgress'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,12 +14,12 @@ import {
   shuffleSelector,
 } from '../../store/selectors/indexSelectors'
 import { setIsPlaying, setNextTrack } from '../../store/slices/slices'
+import { useSetDislikeMutation, useSetLikeMutation } from '../../serviceQuery/tracks'
 
 export function AudioPlayer({ isLoading, currentTrack }) {
   const dispatch = useDispatch()
   const tracks = useSelector(allTracksSelector)
 
-  // // const [isPlaying, setIsPlaying] = useState(false)
   const isPlaying = useSelector(isPlayingSelector)
 
   const shuffle = useSelector(shuffleSelector)
@@ -34,6 +34,7 @@ export function AudioPlayer({ isLoading, currentTrack }) {
   const [repeatTrack, setRepeatTrack] = useState(false)
 
   const audioRef = useRef(null)
+
 
   const handleStartStop = () => {
     if (isPlaying) {
@@ -72,6 +73,37 @@ export function AudioPlayer({ isLoading, currentTrack }) {
     setRepeatTrack(!repeatTrack)
   }
 
+
+  const [setLike] = useSetLikeMutation();
+  const [setDislike] = useSetDislikeMutation();
+  const { id } = JSON.stringify((localStorage.getItem("auth")))
+  const auth = JSON.parse(localStorage.getItem("user"));
+  const isUserLike = Boolean(
+    currentTrack?.stared_user?.find((user) => user.id === id)
+  );
+  // console.log(id);
+  const [isLiked, setIsLiked] = useState(isUserLike);
+  useEffect(() => {
+    if (currentTrack?.stared_user) {
+      setIsLiked(isUserLike);
+    } else {
+      setIsLiked(true);
+    }
+  }, [isUserLike, currentTrack?.stared_user]);
+
+  const handleLike = async (id) => {
+    setIsLiked(true);
+    await setLike({ id }).unwrap();
+  };
+
+  const handleDislike = async (id) => {
+    setIsLiked(false);
+    await setDislike({ id }).unwrap();
+  };
+
+  const toggleLikeDislike = (id) =>
+    isLiked ? handleDislike(id) : handleLike(id);
+
   return (
     <S.Bar>
       <S.AudioComponent
@@ -79,9 +111,7 @@ export function AudioPlayer({ isLoading, currentTrack }) {
         onTimeUpdate={onTimeUpdate}
         onLoadedMetadata={onLoadedMetadata}
         src={currentTrack.track_file}
-      >
-        
-      </S.AudioComponent>
+      ></S.AudioComponent>
 
       <S.BarContent>
         <BarPlayerProgress
@@ -133,21 +163,26 @@ export function AudioPlayer({ isLoading, currentTrack }) {
 
               <S.TrackPlayLikeDis>
                 <S.TrackPlayLike className="_btn-icon">
-                  <S.TrackPlayLikeSvg alt="like">
+                  <BarControlsItem
+                  alt="like"
+                  click={() => {
+                    toggleLikeDislike(currentTrack?.id);
+                  }}
+                  isActive={isLiked}/>
+                  {/* <S.TrackPlayLikeSvg alt="like">
                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                  </S.TrackPlayLikeSvg>
+                  </S.TrackPlayLikeSvg> */}
                 </S.TrackPlayLike>
                 <S.TrackPlayDisike className="_btn-icon">
-                  <S.TrackPlayDisikeSvg alt="dislike">
+                  {/* <S.TrackPlayDisikeSvg alt="dislike">
                     <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
-                  </S.TrackPlayDisikeSvg>
+                  </S.TrackPlayDisikeSvg> */}
                 </S.TrackPlayDisike>
               </S.TrackPlayLikeDis>
             </S.PlayerTrackPlay>
           </S.BarPlayer>
 
           <VolumeBlock audioRef={audioRef} />
-
         </S.BarPlayerBlock>
       </S.BarContent>
     </S.Bar>

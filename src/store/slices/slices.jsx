@@ -71,7 +71,7 @@ export const tracksSlice = createSlice({
     },
 
     setCategoryArr: (state, action) => {
-      state.categoryArr = action.payload;
+      state.categoryArr = action.payload
     },
 
     toggleShuffleTrack: (state, action) => {
@@ -100,6 +100,7 @@ export const tracksSlice = createSlice({
 
       if (genres === '') {
         state.FiltersPlaylist.genres = []
+      } else if (genres) {
         if (state.FiltersPlaylist.genres.includes(genres)) {
           state.FiltersPlaylist.genres = state.FiltersPlaylist.genres.filter(
             (item) => item !== genres
@@ -136,29 +137,29 @@ export const tracksSlice = createSlice({
           filterArray = state.categoryArr
         }
 
-         // фильтрация
+        // фильтрация
 
         // по исполнителю
 
         if (state.FiltersPlaylist.authors.length > 0) {
-          state.FiltersPlaylist.isActiveAuthors = true;
+          state.FiltersPlaylist.isActiveAuthors = true
 
           filterArray = filterArray.filter((track) =>
             state.FiltersPlaylist.authors.includes(track.author)
-          );
+          )
         }
 
-         // по жанру
-         if (state.FiltersPlaylist.genres.length > 0) {
-          state.FiltersPlaylist.isActiveGenres = true;
+        // по жанру
+        if (state.FiltersPlaylist.genres.length > 0) {
+          state.FiltersPlaylist.isActiveGenres = true
 
           filterArray = filterArray.filter((track) =>
             state.FiltersPlaylist.genres.includes(track.genre)
-          );
+          )
         }
 
-         // по датам
-         if (state.FiltersPlaylist.sort === "Сначала новые") {
+        // по датам
+        if (state.FiltersPlaylist.sort === "Сначала новые") {
           state.FiltersPlaylist.isActiveSort = true;
 
           filterArray = filterArray.sort(
@@ -174,8 +175,8 @@ export const tracksSlice = createSlice({
           state.FiltersPlaylist.isActiveSort = false;
         }
 
-         // поиск
-         if (state.FiltersPlaylist.search.length > 0) {
+        // поиск
+        if (state.FiltersPlaylist.search.length > 0) {
           state.FiltersPlaylist.isActiveSearch = true;
 
           filterArray = filterArray.filter((item) =>
@@ -186,7 +187,7 @@ export const tracksSlice = createSlice({
         }
 
         return filterArray;
-      }
+      };
 
       state.FiltersPlaylist.filterTracksArr = getFilteredTracks();
     },
