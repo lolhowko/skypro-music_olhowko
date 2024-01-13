@@ -21,7 +21,7 @@ import {
 } from '../../store/slices/slices'
 import { useEffect } from 'react'
 
-export function TrackList({ title, isLoading, error, tracks, isFavorites }) {
+export function TrackList({ title, isLoading, error, tracks, isFavorites, isMain }) {
   const dispatch = useDispatch()
   const shuffle = useSelector(shuffleSelector)
   const allTracks = useSelector(allTracksSelector)

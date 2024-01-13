@@ -59,7 +59,7 @@ export function Track({ isLoading, track, isFavorites = false }) {
     <S.PlaylistTrack className="track">
       <S.TrackTittle>
         <S.TrackTittleImage>
-          {currentTrack && currentTrack.id === track.id ? (
+          {currentTrack && currentTrack.id === id ? (
             <S.PointPlaying $playing={isPlaying} />
           ) : (
             <S.TrackTittleSvg alt="music">
